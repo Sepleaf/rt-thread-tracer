@@ -1,0 +1,30 @@
+{
+    "files.associations": {
+        "stm32f10x.h": "c",
+        "motor.h": "c",
+        "led.h": "c",
+        "mythread.h": "c",
+        "board.h": "c",
+        "rtthread.h": "c",
+        "mpu6050.h": "c",
+        "inv_mpu.h": "c",
+        "inv_mpu_dmp_motion_driver.h": "c",
+        "mpu6050_reg.h": "c",
+        "balance.h": "c",
+        "myiic.h": "c",
+        "delay.h": "c",
+        "cmath": "c",
+        "imu.h": "c",
+        "filter.h": "c",
+        "paramsave.h": "c",
+        "structconfig.h": "c",
+        "control.h": "c",
+        "pid.h": "c",
+        "oled.h": "c",
+        "fs_i6.h": "c",
+        "my_rtt.h": "c",
+        "gray.h": "c",
+        "key.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
+}

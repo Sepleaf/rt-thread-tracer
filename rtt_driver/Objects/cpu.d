@@ -1,0 +1,9 @@
+.\objects\cpu.o: rt-thread\src\cpu.c
+.\objects\cpu.o: .\rt-thread\include\rtthread.h
+.\objects\cpu.o: .\Board\rtconfig.h
+.\objects\cpu.o: .\rt-thread\include\rtthread.h
+.\objects\cpu.o: .\rt-thread\include\rtdebug.h
+.\objects\cpu.o: .\rt-thread\include\rtdef.h
+.\objects\cpu.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\cpu.o: .\rt-thread\include\rtservice.h
+.\objects\cpu.o: .\rt-thread\include\rthw.h

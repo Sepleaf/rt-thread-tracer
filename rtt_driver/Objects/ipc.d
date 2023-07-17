@@ -1,0 +1,9 @@
+.\objects\ipc.o: rt-thread\src\ipc.c
+.\objects\ipc.o: .\rt-thread\include\rtthread.h
+.\objects\ipc.o: .\Board\rtconfig.h
+.\objects\ipc.o: .\rt-thread\include\rtthread.h
+.\objects\ipc.o: .\rt-thread\include\rtdebug.h
+.\objects\ipc.o: .\rt-thread\include\rtdef.h
+.\objects\ipc.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\ipc.o: .\rt-thread\include\rtservice.h
+.\objects\ipc.o: .\rt-thread\include\rthw.h

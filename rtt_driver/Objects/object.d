@@ -1,0 +1,9 @@
+.\objects\object.o: rt-thread\src\object.c
+.\objects\object.o: .\rt-thread\include\rtthread.h
+.\objects\object.o: .\Board\rtconfig.h
+.\objects\object.o: .\rt-thread\include\rtthread.h
+.\objects\object.o: .\rt-thread\include\rtdebug.h
+.\objects\object.o: .\rt-thread\include\rtdef.h
+.\objects\object.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\object.o: .\rt-thread\include\rtservice.h
+.\objects\object.o: .\rt-thread\include\rthw.h

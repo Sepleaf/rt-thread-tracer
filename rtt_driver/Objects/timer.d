@@ -1,0 +1,9 @@
+.\objects\timer.o: rt-thread\src\timer.c
+.\objects\timer.o: .\rt-thread\include\rtthread.h
+.\objects\timer.o: .\Board\rtconfig.h
+.\objects\timer.o: .\rt-thread\include\rtthread.h
+.\objects\timer.o: .\rt-thread\include\rtdebug.h
+.\objects\timer.o: .\rt-thread\include\rtdef.h
+.\objects\timer.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\timer.o: .\rt-thread\include\rtservice.h
+.\objects\timer.o: .\rt-thread\include\rthw.h
