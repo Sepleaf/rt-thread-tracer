@@ -3,8 +3,9 @@
 #include "motor.h"
 #include "pid.h"
 #include "gray.h"
+#include "encoder.h"
 
-void gray_bias(int *k, int *error);
-void motor_control(int k, int error);
+void gray_bias(float *A_BIAS, float *B_BIAS);
+void pid_controller(float Excpect_A_CNT, float Excpect_B_CNT);
 
 #endif

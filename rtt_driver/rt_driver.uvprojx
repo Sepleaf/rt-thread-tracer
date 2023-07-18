@@ -675,6 +675,21 @@
               <FileType>1</FileType>
               <FilePath>.\Driver\Src\led.c</FilePath>
             </File>
+            <File>
+              <FileName>encoder.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Driver\Src\encoder.c</FilePath>
+            </File>
+            <File>
+              <FileName>beep.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Driver\Src\beep.c</FilePath>
+            </File>
+            <File>
+              <FileName>usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Driver\Src\usart.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

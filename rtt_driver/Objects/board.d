@@ -44,3 +44,7 @@
 .\objects\board.o: .\System\Inc\pid.h
 .\objects\board.o: .\Driver\Inc\key.h
 .\objects\board.o: .\Driver\Inc\led.h
+.\objects\board.o: .\Driver\Inc\beep.h
+.\objects\board.o: .\Driver\Inc\usart.h
+.\objects\board.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\board.o: .\Driver\Inc\encoder.h

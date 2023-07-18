@@ -1,9 +1,9 @@
 #include "gray.h"
 
-#define IIC_CLK RCC_APB2Periph_GPIOA
-#define IIC_GPIO GPIOA
-#define SCL_Pin GPIO_Pin_2
-#define SDA_Pin GPIO_Pin_3
+#define IIC_CLK             RCC_APB2Periph_GPIOB
+#define IIC_GPIO            GPIOB
+#define SCL_Pin             GPIO_Pin_8
+#define SDA_Pin             GPIO_Pin_9
 
 #define gray_addr 0x9E
 
@@ -32,9 +32,9 @@ void gray_iic_init(void)
     RCC_APB2PeriphClockCmd(IIC_CLK, ENABLE);
 
     GPIO_InitTypeDef GPIO_InitStructure;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_OD;
-    GPIO_InitStructure.GPIO_Pin = SCL_Pin | SDA_Pin;
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_InitStructure.GPIO_Mode                = GPIO_Mode_Out_OD;
+    GPIO_InitStructure.GPIO_Pin                 = SCL_Pin | SDA_Pin;
+    GPIO_InitStructure.GPIO_Speed               = GPIO_Speed_50MHz;
     GPIO_Init(IIC_GPIO, &GPIO_InitStructure);
 
     GPIO_SetBits(IIC_GPIO, SCL_Pin | SDA_Pin);

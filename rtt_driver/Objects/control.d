@@ -33,3 +33,4 @@
 .\objects\control.o: .\System\Inc\pid.h
 .\objects\control.o: .\Driver\Inc\gray.h
 .\objects\control.o: .\System\Inc\delay.h
+.\objects\control.o: .\Driver\Inc\encoder.h

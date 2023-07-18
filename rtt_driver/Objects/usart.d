@@ -1,10 +1,10 @@
-.\objects\usart.o: Hardware\USART\USART.c
-.\objects\usart.o: Hardware\USART\USART.h
+.\objects\usart.o: Driver\Src\usart.c
+.\objects\usart.o: .\Driver\Inc\usart.h
 .\objects\usart.o: .\start\stm32f10x.h
 .\objects\usart.o: .\start\core_cm3.h
 .\objects\usart.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\usart.o: .\start\system_stm32f10x.h
-.\objects\usart.o: .\use\stm32f10x_conf.h
+.\objects\usart.o: .\Board\stm32f10x_conf.h
 .\objects\usart.o: .\library\stm32f10x_adc.h
 .\objects\usart.o: .\start\stm32f10x.h
 .\objects\usart.o: .\library\stm32f10x_bkp.h

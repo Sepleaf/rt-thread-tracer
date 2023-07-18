@@ -24,7 +24,10 @@
         "fs_i6.h": "c",
         "my_rtt.h": "c",
         "gray.h": "c",
-        "key.h": "c"
+        "key.h": "c",
+        "encoder.h": "c",
+        "usart.h": "c",
+        "beep.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

@@ -1,36 +1,34 @@
 #include "pid.h"
 
 /*
- *k:       偏差系数
- *_pid:    PID参数结构
+ *位置环PID
+ *cnt:    编码器计数
+ *target: 目标编码数
+ *_pid:   PID参数结构体
+ *return: PWM
  */
-int pid_location(int k, PID_TYPE _pid)
+int pid_position(int cnt, int target, PID_TYPE _pid)
 {
-    _pid.bias = k;
+    _pid.bias = cnt - target;
     _pid.integral_bias += _pid.bias;
 
-    _pid.pwm = _pid.kp * _pid.bias +
-               _pid.ki * _pid.integral_bias +
-               _pid.kd * (_pid.bias - _pid.last_bias);
-
+    _pid.pwm += _pid.kp * (_pid.bias - _pid.last_bias) +
+                _pid.ki * _pid.bias;
     _pid.last_bias = _pid.bias;
 
     return _pid.pwm;
 }
 
 /*
- *k:       偏差系数
- *_pid:    PID参数结构
+ *速度环PID
+ *CNT：          编码器计数
+ *expect_cnt：   目标编码器数
+ *pid：          PID参数结构体
  */
-int pid_basic(int k, PID_TYPE _pid)
+int pid_increment(float CNT, float expect_cnt, PID_TYPE pid)
 {
-    _pid.bias = k;
-    _pid.integral_bias += _pid.bias;
-
-    _pid.pwm = 4000 - _pid.kp * _pid.bias +
-               _pid.kd * (_pid.bias - _pid.last_bias);
-
-    _pid.last_bias = _pid.bias;
-
-    return _pid.pwm;
+    pid.bias = expect_cnt - CNT;
+    pid.pwm += pid.kp * (pid.bias - pid.last_bias) +
+               pid.ki * pid.bias;
+    return pid.pwm;
 }

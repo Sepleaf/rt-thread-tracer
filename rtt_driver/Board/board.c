@@ -72,9 +72,9 @@ void rt_hw_board_init()
 
     motor_pwm_init(7200 - 1, 1 - 1);
     gray_iic_init();
-    //  OLED_Init();
-    //  key_init();
-    led_init();
+    encoder_init();
+    key_init();
+    beep_init();
 
     /* Call components board initial (use INIT_BOARD_EXPORT()) */
 #ifdef RT_USING_COMPONENTS_INIT

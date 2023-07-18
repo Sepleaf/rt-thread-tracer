@@ -7,8 +7,8 @@ static rt_thread_t gray_thread = RT_NULL;
 static void pid_thread_entry(void *parameter);
 static void gray_thread_entry(void *parameter);
 
-int k_value;
-int error_value;
+float A_TargetCNT;
+float B_TargetCNT;
 
 int my_rtt_init(void)
 {
@@ -40,20 +40,13 @@ int my_rtt_init(void)
 
 static void pid_thread_entry(void *parameter)
 {
-    // uint8_t key_status;
     motor_forward();
+
     while (1)
     {
-        motor_control(k_value, error_value);
+        pid_controller(A_TargetCNT, B_TargetCNT);
+		
         rt_thread_delay(10);
-        //     key_status = key_scan();
-        //       if (key_status)
-        //	   {
-        //           motor_control(k_value, error_value);
-        //           motor_forward();
-        //       }
-        //       else
-        //           motor_stop();
     }
 }
 
@@ -61,7 +54,8 @@ static void gray_thread_entry(void *parameter)
 {
     while (1)
     {
-        gray_bias(&k_value, &error_value);
+        gray_bias(&A_TargetCNT, &B_TargetCNT);
+
         rt_thread_delay(10);
     }
 }

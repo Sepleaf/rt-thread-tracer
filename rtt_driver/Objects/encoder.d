@@ -1,10 +1,10 @@
-.\objects\encoder.o: Hardware\Encoder\Encoder.c
-.\objects\encoder.o: Hardware\Encoder\encoder.h
+.\objects\encoder.o: Driver\Src\encoder.c
+.\objects\encoder.o: .\Driver\Inc\encoder.h
 .\objects\encoder.o: .\start\stm32f10x.h
 .\objects\encoder.o: .\start\core_cm3.h
 .\objects\encoder.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\encoder.o: .\start\system_stm32f10x.h
-.\objects\encoder.o: .\use\stm32f10x_conf.h
+.\objects\encoder.o: .\Board\stm32f10x_conf.h
 .\objects\encoder.o: .\library\stm32f10x_adc.h
 .\objects\encoder.o: .\start\stm32f10x.h
 .\objects\encoder.o: .\library\stm32f10x_bkp.h

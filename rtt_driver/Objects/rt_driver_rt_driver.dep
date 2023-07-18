@@ -748,7 +748,7 @@ I (.\library\stm32f10x_usart.h)(0x4D783BB4)
 I (.\library\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\library\misc.h)(0x4D783BB4)
 F (.\library\stm32f10x_wwdg.h)(0x4D783BB4)()
-F (.\Driver\Src\motor.c)(0x64B4B129)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\start -I .\library -I .\System -I .\rt-thread\src -I .\rt-thread\include -I .\rt-thread\include\libc -I .\rt-thread\libcpu\arm\cortex-m3 -I .\rt-thread\components\finsh -I .\System\rtt_init -I .\System\Src -I .\System\Inc -I .\Driver\Inc -I .\Driver\Src -I .\Board-I.\RTE\_rt_driver-ID:\Keil\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\motor.o --omf_browse .\objects\motor.crf --depend .\objects\motor.d)
+F (.\Driver\Src\motor.c)(0x64B61B03)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\start -I .\library -I .\System -I .\rt-thread\src -I .\rt-thread\include -I .\rt-thread\include\libc -I .\rt-thread\libcpu\arm\cortex-m3 -I .\rt-thread\components\finsh -I .\System\rtt_init -I .\System\Src -I .\System\Inc -I .\Driver\Inc -I .\Driver\Src -I .\Board-I.\RTE\_rt_driver-ID:\Keil\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\motor.o --omf_browse .\objects\motor.crf --depend .\objects\motor.d)
 I (.\Driver\Inc\motor.h)(0x64B3E9B4)
 I (.\start\stm32f10x.h)(0x4D783CB4)
 I (.\start\core_cm3.h)(0x4D523B58)
@@ -809,7 +809,7 @@ I (.\library\stm32f10x_usart.h)(0x4D783BB4)
 I (.\library\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\library\misc.h)(0x4D783BB4)
 I (.\Driver\Inc\OLED_Font.h)(0x63087D23)
-F (.\Driver\Src\gray.c)(0x64B4D2E8)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\start -I .\library -I .\System -I .\rt-thread\src -I .\rt-thread\include -I .\rt-thread\include\libc -I .\rt-thread\libcpu\arm\cortex-m3 -I .\rt-thread\components\finsh -I .\System\rtt_init -I .\System\Src -I .\System\Inc -I .\Driver\Inc -I .\Driver\Src -I .\Board-I.\RTE\_rt_driver-ID:\Keil\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\gray.o --omf_browse .\objects\gray.crf --depend .\objects\gray.d)
+F (.\Driver\Src\gray.c)(0x64B5F10F)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\start -I .\library -I .\System -I .\rt-thread\src -I .\rt-thread\include -I .\rt-thread\include\libc -I .\rt-thread\libcpu\arm\cortex-m3 -I .\rt-thread\components\finsh -I .\System\rtt_init -I .\System\Src -I .\System\Inc -I .\Driver\Inc -I .\Driver\Src -I .\Board-I.\RTE\_rt_driver-ID:\Keil\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\gray.o --omf_browse .\objects\gray.crf --depend .\objects\gray.d)
 I (.\Driver\Inc\gray.h)(0x64B4D301)
 I (.\start\stm32f10x.h)(0x4D783CB4)
 I (.\start\core_cm3.h)(0x4D523B58)
@@ -840,8 +840,8 @@ I (.\library\stm32f10x_usart.h)(0x4D783BB4)
 I (.\library\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\library\misc.h)(0x4D783BB4)
 I (.\System\Inc\delay.h)(0x646084D8)
-F (.\Driver\Src\key.c)(0x64B3568B)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\start -I .\library -I .\System -I .\rt-thread\src -I .\rt-thread\include -I .\rt-thread\include\libc -I .\rt-thread\libcpu\arm\cortex-m3 -I .\rt-thread\components\finsh -I .\System\rtt_init -I .\System\Src -I .\System\Inc -I .\Driver\Inc -I .\Driver\Src -I .\Board-I.\RTE\_rt_driver-ID:\Keil\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\key.o --omf_browse .\objects\key.crf --depend .\objects\key.d)
-I (.\Driver\Inc\key.h)(0x64B35689)
+F (.\Driver\Src\key.c)(0x64B5F097)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\start -I .\library -I .\System -I .\rt-thread\src -I .\rt-thread\include -I .\rt-thread\include\libc -I .\rt-thread\libcpu\arm\cortex-m3 -I .\rt-thread\components\finsh -I .\System\rtt_init -I .\System\Src -I .\System\Inc -I .\Driver\Inc -I .\Driver\Src -I .\Board-I.\RTE\_rt_driver-ID:\Keil\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\key.o --omf_browse .\objects\key.crf --depend .\objects\key.d)
+I (.\Driver\Inc\key.h)(0x64B5EE6F)
 I (.\start\stm32f10x.h)(0x4D783CB4)
 I (.\start\core_cm3.h)(0x4D523B58)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x588B8344)
@@ -900,7 +900,99 @@ I (.\library\stm32f10x_tim.h)(0x4D783BB4)
 I (.\library\stm32f10x_usart.h)(0x4D783BB4)
 I (.\library\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\library\misc.h)(0x4D783BB4)
-F (.\Board\board.c)(0x64B3F61F)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\start -I .\library -I .\System -I .\rt-thread\src -I .\rt-thread\include -I .\rt-thread\include\libc -I .\rt-thread\libcpu\arm\cortex-m3 -I .\rt-thread\components\finsh -I .\System\rtt_init -I .\System\Src -I .\System\Inc -I .\Driver\Inc -I .\Driver\Src -I .\Board-I.\RTE\_rt_driver-ID:\Keil\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\board.o --omf_browse .\objects\board.crf --depend .\objects\board.d)
+F (.\Driver\Src\encoder.c)(0x64B620D7)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\start -I .\library -I .\System -I .\rt-thread\src -I .\rt-thread\include -I .\rt-thread\include\libc -I .\rt-thread\libcpu\arm\cortex-m3 -I .\rt-thread\components\finsh -I .\System\rtt_init -I .\System\Src -I .\System\Inc -I .\Driver\Inc -I .\Driver\Src -I .\Board-I.\RTE\_rt_driver-ID:\Keil\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\encoder.o --omf_browse .\objects\encoder.crf --depend .\objects\encoder.d)
+I (.\Driver\Inc\encoder.h)(0x64B61C9B)
+I (.\start\stm32f10x.h)(0x4D783CB4)
+I (.\start\core_cm3.h)(0x4D523B58)
+I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x588B8344)
+I (.\start\system_stm32f10x.h)(0x4D783CAA)
+I (.\Board\stm32f10x_conf.h)(0x4D99A59E)
+I (.\library\stm32f10x_adc.h)(0x4D783BB4)
+I (.\library\stm32f10x_bkp.h)(0x4D783BB4)
+I (.\library\stm32f10x_can.h)(0x4D783BB4)
+I (.\library\stm32f10x_cec.h)(0x4D783BB4)
+I (.\library\stm32f10x_crc.h)(0x4D783BB4)
+I (.\library\stm32f10x_dac.h)(0x4D783BB4)
+I (.\library\stm32f10x_dbgmcu.h)(0x4D783BB4)
+I (.\library\stm32f10x_dma.h)(0x4D783BB4)
+I (.\library\stm32f10x_exti.h)(0x4D783BB4)
+I (.\library\stm32f10x_flash.h)(0x4D783BB4)
+I (.\library\stm32f10x_fsmc.h)(0x4D783BB4)
+I (.\library\stm32f10x_gpio.h)(0x4D783BB4)
+I (.\library\stm32f10x_i2c.h)(0x4D783BB4)
+I (.\library\stm32f10x_iwdg.h)(0x4D783BB4)
+I (.\library\stm32f10x_pwr.h)(0x4D783BB4)
+I (.\library\stm32f10x_rcc.h)(0x4D783BB4)
+I (.\library\stm32f10x_rtc.h)(0x4D783BB4)
+I (.\library\stm32f10x_sdio.h)(0x4D783BB4)
+I (.\library\stm32f10x_spi.h)(0x4D783BB4)
+I (.\library\stm32f10x_tim.h)(0x4D783BB4)
+I (.\library\stm32f10x_usart.h)(0x4D783BB4)
+I (.\library\stm32f10x_wwdg.h)(0x4D783BB4)
+I (.\library\misc.h)(0x4D783BB4)
+F (.\Driver\Src\beep.c)(0x64B5F5B1)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\start -I .\library -I .\System -I .\rt-thread\src -I .\rt-thread\include -I .\rt-thread\include\libc -I .\rt-thread\libcpu\arm\cortex-m3 -I .\rt-thread\components\finsh -I .\System\rtt_init -I .\System\Src -I .\System\Inc -I .\Driver\Inc -I .\Driver\Src -I .\Board-I.\RTE\_rt_driver-ID:\Keil\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\beep.o --omf_browse .\objects\beep.crf --depend .\objects\beep.d)
+I (.\Driver\Inc\beep.h)(0x64B5F65A)
+I (.\start\stm32f10x.h)(0x4D783CB4)
+I (.\start\core_cm3.h)(0x4D523B58)
+I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x588B8344)
+I (.\start\system_stm32f10x.h)(0x4D783CAA)
+I (.\Board\stm32f10x_conf.h)(0x4D99A59E)
+I (.\library\stm32f10x_adc.h)(0x4D783BB4)
+I (.\library\stm32f10x_bkp.h)(0x4D783BB4)
+I (.\library\stm32f10x_can.h)(0x4D783BB4)
+I (.\library\stm32f10x_cec.h)(0x4D783BB4)
+I (.\library\stm32f10x_crc.h)(0x4D783BB4)
+I (.\library\stm32f10x_dac.h)(0x4D783BB4)
+I (.\library\stm32f10x_dbgmcu.h)(0x4D783BB4)
+I (.\library\stm32f10x_dma.h)(0x4D783BB4)
+I (.\library\stm32f10x_exti.h)(0x4D783BB4)
+I (.\library\stm32f10x_flash.h)(0x4D783BB4)
+I (.\library\stm32f10x_fsmc.h)(0x4D783BB4)
+I (.\library\stm32f10x_gpio.h)(0x4D783BB4)
+I (.\library\stm32f10x_i2c.h)(0x4D783BB4)
+I (.\library\stm32f10x_iwdg.h)(0x4D783BB4)
+I (.\library\stm32f10x_pwr.h)(0x4D783BB4)
+I (.\library\stm32f10x_rcc.h)(0x4D783BB4)
+I (.\library\stm32f10x_rtc.h)(0x4D783BB4)
+I (.\library\stm32f10x_sdio.h)(0x4D783BB4)
+I (.\library\stm32f10x_spi.h)(0x4D783BB4)
+I (.\library\stm32f10x_tim.h)(0x4D783BB4)
+I (.\library\stm32f10x_usart.h)(0x4D783BB4)
+I (.\library\stm32f10x_wwdg.h)(0x4D783BB4)
+I (.\library\misc.h)(0x4D783BB4)
+F (.\Driver\Src\usart.c)(0x64B5F43A)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\start -I .\library -I .\System -I .\rt-thread\src -I .\rt-thread\include -I .\rt-thread\include\libc -I .\rt-thread\libcpu\arm\cortex-m3 -I .\rt-thread\components\finsh -I .\System\rtt_init -I .\System\Src -I .\System\Inc -I .\Driver\Inc -I .\Driver\Src -I .\Board-I.\RTE\_rt_driver-ID:\Keil\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\usart.o --omf_browse .\objects\usart.crf --depend .\objects\usart.d)
+I (.\Driver\Inc\usart.h)(0x64B5F470)
+I (.\start\stm32f10x.h)(0x4D783CB4)
+I (.\start\core_cm3.h)(0x4D523B58)
+I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x588B8344)
+I (.\start\system_stm32f10x.h)(0x4D783CAA)
+I (.\Board\stm32f10x_conf.h)(0x4D99A59E)
+I (.\library\stm32f10x_adc.h)(0x4D783BB4)
+I (.\library\stm32f10x_bkp.h)(0x4D783BB4)
+I (.\library\stm32f10x_can.h)(0x4D783BB4)
+I (.\library\stm32f10x_cec.h)(0x4D783BB4)
+I (.\library\stm32f10x_crc.h)(0x4D783BB4)
+I (.\library\stm32f10x_dac.h)(0x4D783BB4)
+I (.\library\stm32f10x_dbgmcu.h)(0x4D783BB4)
+I (.\library\stm32f10x_dma.h)(0x4D783BB4)
+I (.\library\stm32f10x_exti.h)(0x4D783BB4)
+I (.\library\stm32f10x_flash.h)(0x4D783BB4)
+I (.\library\stm32f10x_fsmc.h)(0x4D783BB4)
+I (.\library\stm32f10x_gpio.h)(0x4D783BB4)
+I (.\library\stm32f10x_i2c.h)(0x4D783BB4)
+I (.\library\stm32f10x_iwdg.h)(0x4D783BB4)
+I (.\library\stm32f10x_pwr.h)(0x4D783BB4)
+I (.\library\stm32f10x_rcc.h)(0x4D783BB4)
+I (.\library\stm32f10x_rtc.h)(0x4D783BB4)
+I (.\library\stm32f10x_sdio.h)(0x4D783BB4)
+I (.\library\stm32f10x_spi.h)(0x4D783BB4)
+I (.\library\stm32f10x_tim.h)(0x4D783BB4)
+I (.\library\stm32f10x_usart.h)(0x4D783BB4)
+I (.\library\stm32f10x_wwdg.h)(0x4D783BB4)
+I (.\library\misc.h)(0x4D783BB4)
+I (D:\Keil\ARM\ARMCC\include\stdio.h)(0x588B8344)
+I (D:\Keil\ARM\ARMCC\include\stdarg.h)(0x588B8344)
+F (.\Board\board.c)(0x64B5F5F6)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\start -I .\library -I .\System -I .\rt-thread\src -I .\rt-thread\include -I .\rt-thread\include\libc -I .\rt-thread\libcpu\arm\cortex-m3 -I .\rt-thread\components\finsh -I .\System\rtt_init -I .\System\Src -I .\System\Inc -I .\Driver\Inc -I .\Driver\Src -I .\Board-I.\RTE\_rt_driver-ID:\Keil\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\board.o --omf_browse .\objects\board.crf --depend .\objects\board.d)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x588B8344)
 I (.\rt-thread\include\rthw.h)(0x60ED86CD)
 I (.\rt-thread\include\rtthread.h)(0x60ED86CD)
@@ -909,7 +1001,7 @@ I (.\rt-thread\include\rtdebug.h)(0x60ED86CD)
 I (.\rt-thread\include\rtdef.h)(0x60ED86CD)
 I (D:\Keil\ARM\ARMCC\include\stdarg.h)(0x588B8344)
 I (.\rt-thread\include\rtservice.h)(0x60ED86CD)
-I (Board\board.h)(0x64B3DA61)
+I (Board\board.h)(0x64B5F5ED)
 I (.\Driver\Inc\motor.h)(0x64B3E9B4)
 I (.\start\stm32f10x.h)(0x4D783CB4)
 I (.\start\core_cm3.h)(0x4D523B58)
@@ -941,11 +1033,15 @@ I (.\library\misc.h)(0x4D783BB4)
 I (.\Driver\Inc\OLED.h)(0x64AA7607)
 I (.\Driver\Inc\gray.h)(0x64B4D301)
 I (.\System\Inc\delay.h)(0x646084D8)
-I (.\System\Inc\pid.h)(0x64B4C256)
-I (.\Driver\Inc\key.h)(0x64B35689)
+I (.\System\Inc\pid.h)(0x64B61FA0)
+I (.\Driver\Inc\key.h)(0x64B5EE6F)
 I (.\Driver\Inc\led.h)(0x64B3DF1A)
+I (.\Driver\Inc\beep.h)(0x64B5F65A)
+I (.\Driver\Inc\usart.h)(0x64B5F470)
+I (D:\Keil\ARM\ARMCC\include\stdio.h)(0x588B8344)
+I (.\Driver\Inc\encoder.h)(0x64B61C9B)
 F (.\Board\main.c)(0x64B2978A)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\start -I .\library -I .\System -I .\rt-thread\src -I .\rt-thread\include -I .\rt-thread\include\libc -I .\rt-thread\libcpu\arm\cortex-m3 -I .\rt-thread\components\finsh -I .\System\rtt_init -I .\System\Src -I .\System\Inc -I .\Driver\Inc -I .\Driver\Src -I .\Board-I.\RTE\_rt_driver-ID:\Keil\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
-I (Board\board.h)(0x64B3DA61)
+I (Board\board.h)(0x64B5F5ED)
 I (.\Driver\Inc\motor.h)(0x64B3E9B4)
 I (.\start\stm32f10x.h)(0x4D783CB4)
 I (.\start\core_cm3.h)(0x4D523B58)
@@ -978,17 +1074,21 @@ I (.\library\misc.h)(0x4D783BB4)
 I (.\Driver\Inc\OLED.h)(0x64AA7607)
 I (.\Driver\Inc\gray.h)(0x64B4D301)
 I (.\System\Inc\delay.h)(0x646084D8)
-I (.\System\Inc\pid.h)(0x64B4C256)
-I (.\Driver\Inc\key.h)(0x64B35689)
+I (.\System\Inc\pid.h)(0x64B61FA0)
+I (.\Driver\Inc\key.h)(0x64B5EE6F)
 I (.\Driver\Inc\led.h)(0x64B3DF1A)
+I (.\Driver\Inc\beep.h)(0x64B5F65A)
+I (.\Driver\Inc\usart.h)(0x64B5F470)
+I (D:\Keil\ARM\ARMCC\include\stdio.h)(0x588B8344)
+I (D:\Keil\ARM\ARMCC\include\stdarg.h)(0x588B8344)
+I (.\Driver\Inc\encoder.h)(0x64B61C9B)
 I (.\rt-thread\include\rtthread.h)(0x60ED86CD)
 I (.\Board\rtconfig.h)(0x645CD9DA)
 I (.\rt-thread\include\rtdebug.h)(0x60ED86CD)
 I (.\rt-thread\include\rtdef.h)(0x60ED86CD)
-I (D:\Keil\ARM\ARMCC\include\stdarg.h)(0x588B8344)
 I (.\rt-thread\include\rtservice.h)(0x60ED86CD)
-I (.\System\Inc\my_rtt.h)(0x64B3DAC6)
-I (.\System\Inc\control.h)(0x64B4DC96)
+I (.\System\Inc\my_rtt.h)(0x64B5F99B)
+I (.\System\Inc\control.h)(0x64B62B14)
 F (.\Board\stm32f10x_it.c)(0x645CD25E)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\start -I .\library -I .\System -I .\rt-thread\src -I .\rt-thread\include -I .\rt-thread\include\libc -I .\rt-thread\libcpu\arm\cortex-m3 -I .\rt-thread\components\finsh -I .\System\rtt_init -I .\System\Src -I .\System\Inc -I .\Driver\Inc -I .\Driver\Src -I .\Board-I.\RTE\_rt_driver-ID:\Keil\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\stm32f10x_it.o --omf_browse .\objects\stm32f10x_it.crf --depend .\objects\stm32f10x_it.d)
 I (Board\stm32f10x_it.h)(0x4D99A59E)
 I (.\start\stm32f10x.h)(0x4D783CB4)
@@ -1019,8 +1119,8 @@ I (.\library\stm32f10x_tim.h)(0x4D783BB4)
 I (.\library\stm32f10x_usart.h)(0x4D783BB4)
 I (.\library\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\library\misc.h)(0x4D783BB4)
-F (.\System\Src\control.c)(0x64B4E1F1)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\start -I .\library -I .\System -I .\rt-thread\src -I .\rt-thread\include -I .\rt-thread\include\libc -I .\rt-thread\libcpu\arm\cortex-m3 -I .\rt-thread\components\finsh -I .\System\rtt_init -I .\System\Src -I .\System\Inc -I .\Driver\Inc -I .\Driver\Src -I .\Board-I.\RTE\_rt_driver-ID:\Keil\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\control.o --omf_browse .\objects\control.crf --depend .\objects\control.d)
-I (.\System\Inc\control.h)(0x64B4DC96)
+F (.\System\Src\control.c)(0x64B62C0E)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\start -I .\library -I .\System -I .\rt-thread\src -I .\rt-thread\include -I .\rt-thread\include\libc -I .\rt-thread\libcpu\arm\cortex-m3 -I .\rt-thread\components\finsh -I .\System\rtt_init -I .\System\Src -I .\System\Inc -I .\Driver\Inc -I .\Driver\Src -I .\Board-I.\RTE\_rt_driver-ID:\Keil\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\control.o --omf_browse .\objects\control.crf --depend .\objects\control.d)
+I (.\System\Inc\control.h)(0x64B62B14)
 I (.\Driver\Inc\motor.h)(0x64B3E9B4)
 I (.\start\stm32f10x.h)(0x4D783CB4)
 I (.\start\core_cm3.h)(0x4D523B58)
@@ -1050,11 +1150,12 @@ I (.\library\stm32f10x_tim.h)(0x4D783BB4)
 I (.\library\stm32f10x_usart.h)(0x4D783BB4)
 I (.\library\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\library\misc.h)(0x4D783BB4)
-I (.\System\Inc\pid.h)(0x64B4C256)
+I (.\System\Inc\pid.h)(0x64B61FA0)
 I (.\Driver\Inc\gray.h)(0x64B4D301)
 I (.\System\Inc\delay.h)(0x646084D8)
-F (.\System\Src\pid.c)(0x64B4C2AD)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\start -I .\library -I .\System -I .\rt-thread\src -I .\rt-thread\include -I .\rt-thread\include\libc -I .\rt-thread\libcpu\arm\cortex-m3 -I .\rt-thread\components\finsh -I .\System\rtt_init -I .\System\Src -I .\System\Inc -I .\Driver\Inc -I .\Driver\Src -I .\Board-I.\RTE\_rt_driver-ID:\Keil\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\pid.o --omf_browse .\objects\pid.crf --depend .\objects\pid.d)
-I (.\System\Inc\pid.h)(0x64B4C256)
+I (.\Driver\Inc\encoder.h)(0x64B61C9B)
+F (.\System\Src\pid.c)(0x64B62309)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\start -I .\library -I .\System -I .\rt-thread\src -I .\rt-thread\include -I .\rt-thread\include\libc -I .\rt-thread\libcpu\arm\cortex-m3 -I .\rt-thread\components\finsh -I .\System\rtt_init -I .\System\Src -I .\System\Inc -I .\Driver\Inc -I .\Driver\Src -I .\Board-I.\RTE\_rt_driver-ID:\Keil\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\pid.o --omf_browse .\objects\pid.crf --depend .\objects\pid.d)
+I (.\System\Inc\pid.h)(0x64B61FA0)
 F (.\System\Src\delay.c)(0x646084FB)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\start -I .\library -I .\System -I .\rt-thread\src -I .\rt-thread\include -I .\rt-thread\include\libc -I .\rt-thread\libcpu\arm\cortex-m3 -I .\rt-thread\components\finsh -I .\System\rtt_init -I .\System\Src -I .\System\Inc -I .\Driver\Inc -I .\Driver\Src -I .\Board-I.\RTE\_rt_driver-ID:\Keil\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\delay.o --omf_browse .\objects\delay.crf --depend .\objects\delay.d)
 I (.\System\Inc\Delay.h)(0x646084D8)
 I (.\start\stm32f10x.h)(0x4D783CB4)
@@ -1085,9 +1186,9 @@ I (.\library\stm32f10x_tim.h)(0x4D783BB4)
 I (.\library\stm32f10x_usart.h)(0x4D783BB4)
 I (.\library\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\library\misc.h)(0x4D783BB4)
-F (.\System\Src\my_rtt.c)(0x64B4DE0E)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\start -I .\library -I .\System -I .\rt-thread\src -I .\rt-thread\include -I .\rt-thread\include\libc -I .\rt-thread\libcpu\arm\cortex-m3 -I .\rt-thread\components\finsh -I .\System\rtt_init -I .\System\Src -I .\System\Inc -I .\Driver\Inc -I .\Driver\Src -I .\Board-I.\RTE\_rt_driver-ID:\Keil\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\my_rtt.o --omf_browse .\objects\my_rtt.crf --depend .\objects\my_rtt.d)
-I (.\System\Inc\my_rtt.h)(0x64B3DAC6)
-I (.\Board\board.h)(0x64B3DA61)
+F (.\System\Src\my_rtt.c)(0x64B62BDA)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\start -I .\library -I .\System -I .\rt-thread\src -I .\rt-thread\include -I .\rt-thread\include\libc -I .\rt-thread\libcpu\arm\cortex-m3 -I .\rt-thread\components\finsh -I .\System\rtt_init -I .\System\Src -I .\System\Inc -I .\Driver\Inc -I .\Driver\Src -I .\Board-I.\RTE\_rt_driver-ID:\Keil\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\my_rtt.o --omf_browse .\objects\my_rtt.crf --depend .\objects\my_rtt.d)
+I (.\System\Inc\my_rtt.h)(0x64B5F99B)
+I (.\Board\board.h)(0x64B5F5ED)
 I (.\Driver\Inc\motor.h)(0x64B3E9B4)
 I (.\start\stm32f10x.h)(0x4D783CB4)
 I (.\start\core_cm3.h)(0x4D523B58)
@@ -1120,16 +1221,20 @@ I (.\library\misc.h)(0x4D783BB4)
 I (.\Driver\Inc\OLED.h)(0x64AA7607)
 I (.\Driver\Inc\gray.h)(0x64B4D301)
 I (.\System\Inc\delay.h)(0x646084D8)
-I (.\System\Inc\pid.h)(0x64B4C256)
-I (.\Driver\Inc\key.h)(0x64B35689)
+I (.\System\Inc\pid.h)(0x64B61FA0)
+I (.\Driver\Inc\key.h)(0x64B5EE6F)
 I (.\Driver\Inc\led.h)(0x64B3DF1A)
+I (.\Driver\Inc\beep.h)(0x64B5F65A)
+I (.\Driver\Inc\usart.h)(0x64B5F470)
+I (D:\Keil\ARM\ARMCC\include\stdio.h)(0x588B8344)
+I (D:\Keil\ARM\ARMCC\include\stdarg.h)(0x588B8344)
+I (.\Driver\Inc\encoder.h)(0x64B61C9B)
 I (.\rt-thread\include\rtthread.h)(0x60ED86CD)
 I (.\Board\rtconfig.h)(0x645CD9DA)
 I (.\rt-thread\include\rtdebug.h)(0x60ED86CD)
 I (.\rt-thread\include\rtdef.h)(0x60ED86CD)
-I (D:\Keil\ARM\ARMCC\include\stdarg.h)(0x588B8344)
 I (.\rt-thread\include\rtservice.h)(0x60ED86CD)
-I (.\System\Inc\control.h)(0x64B4DC96)
+I (.\System\Inc\control.h)(0x64B62B14)
 F (.\rt-thread\src\clock.c)(0x60ED86CD)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\start -I .\library -I .\System -I .\rt-thread\src -I .\rt-thread\include -I .\rt-thread\include\libc -I .\rt-thread\libcpu\arm\cortex-m3 -I .\rt-thread\components\finsh -I .\System\rtt_init -I .\System\Src -I .\System\Inc -I .\Driver\Inc -I .\Driver\Src -I .\Board-I.\RTE\_rt_driver-ID:\Keil\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\clock.o --omf_browse .\objects\clock.crf --depend .\objects\clock.d)
 I (.\rt-thread\include\rthw.h)(0x60ED86CD)
 I (.\rt-thread\include\rtthread.h)(0x60ED86CD)

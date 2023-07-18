@@ -14,12 +14,11 @@ typedef struct
 
 typedef struct
 {
+    PID_TYPE position;
     PID_TYPE increment;
-    PID_TYPE location;
-    PID_TYPE basic;
 } PID_SAVE;
 
-int pid_location(int k, PID_TYPE _pid);
-int pid_basic(int k, PID_TYPE _pid);
+int pid_position(int cnt, int target, PID_TYPE _pid);
+int pid_increment(float CNT, float expect_cnt, PID_TYPE pid);
 
 #endif

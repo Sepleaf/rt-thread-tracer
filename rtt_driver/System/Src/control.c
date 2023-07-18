@@ -1,40 +1,49 @@
 #include "control.h"
 
-int error[8] = {-7, -5, -3, -1, 1, 3, 5, 7};
-int k[8] = {5, 3, 1, 0, 0, 1, 3, 5};
+PID_SAVE pid_save =
+{
+   {100, 100, 0, 0, 0, 0, 0},
+   {5, 10, 0, 0, 0, 0, 0}
+};
+
+float error_cnt[10] = {50, 40, 30, 20, 10, 10, 20, 30, 40, 50};
 
 uint8_t gray_value;
 uint8_t gray_bit[8];
-uint8_t index;
+uint8_t index_A;
+uint8_t index_B;
 
-PID_SAVE pid_save = {
-    {0, 0, 0},
-    {450, 0.5, 4600},
-    {160, 0, 90}};
-
-void gray_bias(int *k, int *error)
+void gray_bias(float *A_BIAS, float *B_BIAS)
 {
     uint8_t i;
+
     gray_value = get_gray_value();
     for (i = 0; i < 8; i++)
         gray_bit[i] = gray_value & (0x01 << i);
-
     for (i = 0; i < 8; i++)
-        if (gray_bit[i] == 0)
-            index = 7 - i;
+    {
+        index_A = 7 - i;
+        index_B = i;
+    }
 
-    *k = k[index];
-    *error = error[index];
+    *A_BIAS = error_cnt[index_A];
+    *B_BIAS = error_cnt[index_B];
 }
 
-int pwm_basic;
-int pwm_location;
-
-void motor_control(int k, int error)
+uint16_t A_PWM = 0;
+uint16_t B_PWM = 0;
+uint16_t A_CNT;
+uint16_t B_CNT;
+/*
+ *PID控制器
+ */
+void pid_controller(float Excpect_A_CNT, float Excpect_B_CNT)
 {
-    pwm_basic = pid_basic(k, pid_save.basic);
-    pwm_location = pid_location(error, pid_save.location);
+    A_CNT = get_timer_cnt(TIM3);
+    B_CNT = get_timer_cnt(TIM2);
 
-    load_pwm(pwm_basic + pwm_location, pwm_basic - pwm_location);
+    A_PWM += pid_increment(A_CNT, Excpect_A_CNT, pid_save.increment);
+    B_PWM += pid_increment(B_CNT, Excpect_B_CNT, pid_save.increment);
+
+    load_pwm(A_PWM, B_PWM);
 }
-

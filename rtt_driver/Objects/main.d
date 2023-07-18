@@ -36,12 +36,16 @@
 .\objects\main.o: .\System\Inc\pid.h
 .\objects\main.o: .\Driver\Inc\key.h
 .\objects\main.o: .\Driver\Inc\led.h
+.\objects\main.o: .\Driver\Inc\beep.h
+.\objects\main.o: .\Driver\Inc\usart.h
+.\objects\main.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\main.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\main.o: .\Driver\Inc\encoder.h
 .\objects\main.o: .\rt-thread\include\rtthread.h
 .\objects\main.o: .\Board\rtconfig.h
 .\objects\main.o: .\rt-thread\include\rtthread.h
 .\objects\main.o: .\rt-thread\include\rtdebug.h
 .\objects\main.o: .\rt-thread\include\rtdef.h
-.\objects\main.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\main.o: .\rt-thread\include\rtservice.h
 .\objects\main.o: .\System\Inc\my_rtt.h
 .\objects\main.o: .\System\Inc\control.h
