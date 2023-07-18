@@ -19,7 +19,7 @@ int pid_increment(float CNT, float expect_cnt, PID_TYPE pid)
     return pid.pwm;
 }
 ```
-* 位置环PID待测试）
+* 位置环PID（待测试）
   
 __control.c__
 ```
