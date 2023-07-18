@@ -34,6 +34,7 @@ int pid_position(int cnt, int target, PID_TYPE _pid)
 }
 ```
 * 灰度探头固定误差值，设定为目标CNT值
+
 __control.c__
 ```
 error_cnt[10] = {50, 40, 30, 20, 10, 10, 20, 30, 40, 50};
