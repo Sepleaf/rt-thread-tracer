@@ -45,7 +45,7 @@ static void pid_thread_entry(void *parameter)
     while (1)
     {
         pid_controller(A_TargetCNT, B_TargetCNT);
-		
+
         rt_thread_delay(10);
     }
 }

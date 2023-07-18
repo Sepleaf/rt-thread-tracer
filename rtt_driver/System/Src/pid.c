@@ -30,5 +30,6 @@ int pid_increment(float CNT, float expect_cnt, PID_TYPE pid)
     pid.bias = expect_cnt - CNT;
     pid.pwm += pid.kp * (pid.bias - pid.last_bias) +
                pid.ki * pid.bias;
+    pid.last_bias = pid.bias;
     return pid.pwm;
 }

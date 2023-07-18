@@ -145,6 +145,6 @@ void load_pwm(uint16_t PWMA, uint16_t PWMB)
 	if (PWMB < MIN_PWM)
 		PWMB = MIN_PWM;
 
-	TIM_SetCompare1(TIMx,PWMA);
-	TIM_SetCompare4(TIMx,PWMB);
+	TIM_SetCompare1(TIMx,PWMB);
+	TIM_SetCompare4(TIMx,PWMA);
 }

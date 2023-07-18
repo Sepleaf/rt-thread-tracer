@@ -15,7 +15,8 @@ typedef struct
 typedef struct
 {
     PID_TYPE position;
-    PID_TYPE increment;
+    PID_TYPE A_increment;
+    PID_TYPE B_increment;
 } PID_SAVE;
 
 int pid_position(int cnt, int target, PID_TYPE _pid);

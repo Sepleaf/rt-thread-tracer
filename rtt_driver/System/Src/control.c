@@ -1,9 +1,10 @@
 #include "control.h"
 
 PID_SAVE pid_save =
-{
-   {100, 100, 0, 0, 0, 0, 0},
-   {5, 10, 0, 0, 0, 0, 0}
+    {
+        {100, 100, 0, 0, 0, 0, 0},
+        {5, 10, 0, 0, 0, 0, 0},
+        {5, 10, 0, 0, 0, 0, 0},
 };
 
 float error_cnt[10] = {50, 40, 30, 20, 10, 10, 20, 30, 40, 50};
@@ -42,8 +43,8 @@ void pid_controller(float Excpect_A_CNT, float Excpect_B_CNT)
     A_CNT = get_timer_cnt(TIM3);
     B_CNT = get_timer_cnt(TIM2);
 
-    A_PWM += pid_increment(A_CNT, Excpect_A_CNT, pid_save.increment);
-    B_PWM += pid_increment(B_CNT, Excpect_B_CNT, pid_save.increment);
+    A_PWM += pid_increment(A_CNT, Excpect_A_CNT, pid_save.A_increment);
+    B_PWM += pid_increment(B_CNT, Excpect_B_CNT, pid_save.B_increment);
 
     load_pwm(A_PWM, B_PWM);
 }
