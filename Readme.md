@@ -16,6 +16,8 @@ int pid_increment(float CNT, float expect_cnt, PID_TYPE pid)
     pid.bias = expect_cnt - CNT;
     pid.pwm += pid.kp * (pid.bias - pid.last_bias) +
                pid.ki * pid.bias;
+    pid.last_bias = pid.bias;
+
     return pid.pwm;
 }
 ```
@@ -30,6 +32,7 @@ int pid_position(int cnt, int target, PID_TYPE _pid)
     _pid.pwm += _pid.kp * (_pid.bias - _pid.last_bias) +
                 _pid.ki * _pid.bias;
     _pid.last_bias = _pid.bias;
+    
     return _pid.pwm;
 }
 ```
@@ -50,5 +53,3 @@ error_cnt[10] = {50, 40, 30, 20, 10, 10, 20, 30, 40, 50};
 * 灰度传感器：感为智能 八路灰度传感器绿光款 带IIC 淘宝连接： [八路灰度传感器](https://item.taobao.com/item.htm?spm=a21n57.1.0.0.1103523crdpRAx&id=700000730878&ns=1&abbucket=0#detail)
 
 >keil 编译版本：5.24.2.0
-
-
