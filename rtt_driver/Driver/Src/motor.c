@@ -26,7 +26,7 @@
 #define BIN1_set 			GPIO_SetBits(IN_GPIO, BIN1_pin)
 #define BIN2_set 			GPIO_SetBits(IN_GPIO, BIN2_pin)
 
-#define MAX_PWM 			6000
+#define MAX_PWM 			5000
 #define MIN_PWM 			0
 
 void motor_pwm_init(uint16_t arr, uint16_t psc)
@@ -93,44 +93,34 @@ void motor_stop()
 
 void motor_forward()
 {
-	AIN1_out;
-	AIN2_set;
-	BIN1_out;
-	BIN2_set;
+	AIN1_set;
+	AIN2_out;
+	BIN1_set;
+	BIN2_out;
 }
 
 void motor_right()
 {
-	AIN1_set;
-	AIN2_out;
-	BIN1_out;
-	BIN2_set;
-}
-
-void motor_left()
-{
 	AIN1_out;
 	AIN2_set;
 	BIN1_set;
 	BIN2_out;
 }
 
-void motor_back()
+void motor_left()
 {
 	AIN1_set;
 	AIN2_out;
-	BIN1_set;
-	BIN2_out;
+	BIN1_out;
+	BIN2_set;
 }
 
-void motor_check(int Speed)
+void motor_back()
 {
-	TIM_SetCompare1(TIMx, Speed); // PWMA
-	TIM_SetCompare4(TIMx, Speed); // PWMB
-	AIN1_set;
-	AIN2_out;
-	BIN1_set;
-	BIN2_out;
+	AIN1_out;
+	AIN2_set;
+	BIN1_out;
+	BIN2_set;
 }
 
 void load_pwm(uint16_t PWMA, uint16_t PWMB)

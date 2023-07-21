@@ -44,7 +44,7 @@ static void pid_thread_entry(void *parameter)
 
     while (1)
     {
-        pid_controller(A_TargetCNT, B_TargetCNT);
+        location_controller(120);
 
         rt_thread_delay(10);
     }
@@ -54,8 +54,8 @@ static void gray_thread_entry(void *parameter)
 {
     while (1)
     {
-        gray_bias(&A_TargetCNT, &B_TargetCNT);
+        // gray_bias(&A_TargetCNT, &B_TargetCNT);
 
-        rt_thread_delay(10);
+        // rt_thread_delay(10);
     }
 }

@@ -6,6 +6,7 @@
 #include "encoder.h"
 
 void gray_bias(float *A_BIAS, float *B_BIAS);
-void pid_controller(float Excpect_A_CNT, float Excpect_B_CNT);
+void speed_controller(float Excpect_A_CNT, float Excpect_B_CNT);
+void location_controller(uint16_t distance_cm);
 
 #endif
