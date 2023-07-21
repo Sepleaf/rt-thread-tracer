@@ -44,9 +44,9 @@ static void pid_thread_entry(void *parameter)
 
     while (1)
     {
-        location_controller(120);
+        location_controller(200);
 
-        rt_thread_delay(10);
+        rt_thread_delay(5);
     }
 }
 

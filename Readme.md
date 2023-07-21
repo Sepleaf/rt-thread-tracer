@@ -27,38 +27,54 @@ float pid_increment(float actual_cnt, float expect_cnt, PID_TYPE pid)
   
 __pid.c__
 ```
-float pid_location(int actual_location, int expect_location, PID_TYPE pid)
+int pid_location(int actual_location, int expect_location, PID_TYPE pid)
 {
     pid.bias = expect_location - actual_location;
+    pid.integral_bias += pid.bias;
+    if (pid.integral_bias > 20000)
+        pid.integral_bias = 20000;
+    if (pid.integral_bias < -20000)
+        pid.integral_bias = -20000;
 
-    pid.output = pid.kp * (pid.bias - pid.last_bias) +
-                 pid.ki * pid.bias +
-                 pid.kd * (pid.bias - 2 * pid.last_bias + pid.last_last_bias);
+    pid.output = pid.kp * pid.bias +
+                 pid.ki * pid.integral_bias +
+                 pid.kd * (pid.bias - pid.last_bias);
 
-    pid.last_last_bias = pid.last_bias;
     pid.last_bias = pid.bias;
+    if (pid.output > 5000)
+        pid.output = 5000;
+    if (pid.output < 0)
+        pid.output = 0;
 
     return pid.output;
 }
 ```
->通过调整增量PID的参数增加稳定性
+>通过调整位置PID的参数增加稳定性,可精确控制至厘米级
 
 * 位置环将距离值（cm）转换为脉冲数CNT
+
+__control.c__
 ```
 void location_controller(uint16_t distance_cm)
 {
-    motor_cnt = distance_cm * 62.66; // 63.66 CNT/cm
+    motor_cnt = distance_cm * 62.64;
+
     A_CNT = get_timer_cnt(TIM3);
     B_CNT = get_timer_cnt(TIM2);
+    if (A_CNT > 0x7FFF)
+        A_CNT -= 0x10000;
+    if (B_CNT > 0x7FFF)
+        B_CNT -= 0x10000;
+
     a_acc_cnt += A_CNT;
     b_acc_cnt += B_CNT;
 
-    a_expect_speed = pid_location(a_acc_cnt, motor_cnt, pid_save.A_location);
-    b_expect_speed = pid_location(b_acc_cnt, motor_cnt, pid_save.B_location);
+    a_expect_cnt = pid_location(a_acc_cnt, motor_cnt, pid_save.a_location);
+    b_expect_cnt = pid_location(b_acc_cnt, motor_cnt, pid_save.b_location);
+    A_PWM = pid_speed(A_CNT, a_expect_cnt, pid_save.a_speed);
+    B_PWM = pid_speed(B_CNT, b_expect_cnt, pid_save.b_speed);
 
-    A_PWM = (a_expect_speed + b_expect_speed) / 2;
-
-    speed_controller(A_PWM, A_PWM);
+    load_pwm(A_PWM, B_PWM);
 }
 ```
 >周长C = 2* PI * R,一圈的脉冲数是1300,计算可得每cm的脉冲数。根据具体情况自行调整参数

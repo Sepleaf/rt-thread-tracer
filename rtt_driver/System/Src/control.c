@@ -1,13 +1,16 @@
 #include "control.h"
 
-PID_SAVE pid_save =
-    {
-        // 位置环
-        {0.1, 0.05, 0, 0, 0, 0, 0, 0},
-        {0.1, 0.05, 0, 0, 0, 0, 0, 0},
-        // 增量环
-        {2, 0.5, 0, 0, 0, 0, 0, 0},
-        {2, 0.5, 0, 0, 0, 0, 0, 0},
+PID_SAVE pid_save = {
+
+    // 位置环
+    {0.1, 0.00001, 2, 0, 0, 0, 0},
+    {0.1, 0.00001, 2, 0, 0, 0, 0},
+    // 速度环
+    {6, 0.01, 0, 0, 0, 0, 0},
+    {6, 0.01, 0, 0, 0, 0, 0},
+    // 增量环
+    {2, 0.5, 0, 0, 0, 0, 0},
+    {2, 0.5, 0, 0, 0, 0, 0},
 };
 
 float error_cnt[10] = {50, 40, 30, 20, 10, 10, 20, 30, 40, 50};
@@ -39,17 +42,16 @@ uint16_t B_PWM = 0;
 uint16_t A_CNT;
 uint16_t B_CNT;
 /*
- *PID控制器
- *Excpect_A_CNT: A电机预期速度 CNT/10ms
- *Excpect_B_CNT: B电机预期速度 CNT/10ms
+ *PID速度控制器
+ *Excpect_A_CNT: A电机目标速度
+ *Excpect_B_CNT: B电机预期速度
  */
 void speed_controller(float Excpect_A_CNT, float Excpect_B_CNT)
 {
-    // A_CNT = get_timer_cnt(TIM3);
-    // B_CNT = get_timer_cnt(TIM2);
-
-    A_PWM += pid_increment(A_CNT, Excpect_A_CNT, pid_save.A_increment);
-    B_PWM += pid_increment(B_CNT, Excpect_B_CNT, pid_save.B_increment);
+    A_CNT = get_timer_cnt(TIM3);
+    B_CNT = get_timer_cnt(TIM2);
+    A_PWM += pid_increment(A_CNT, Excpect_A_CNT, pid_save.a_increment);
+    B_PWM += pid_increment(B_CNT, Excpect_B_CNT, pid_save.b_increment);
 
     load_pwm(A_PWM, B_PWM);
 }
@@ -57,26 +59,31 @@ void speed_controller(float Excpect_A_CNT, float Excpect_B_CNT)
 float motor_cnt;
 uint16_t a_acc_cnt = 0;
 uint16_t b_acc_cnt = 0;
-int16_t a_expect_speed;
-int16_t b_expect_speed;
+int16_t a_expect_cnt;
+int16_t b_expect_cnt;
 /*
- *位置PID控制器
- *distance_cm： 目标距离
- *轮子周长 = 20.42cm
+ *PID位置控制器
+ *轮子周长 = 20.42cm (2*PI*R)
  *一圈CNT = 1300
  */
 void location_controller(uint16_t distance_cm)
 {
-    motor_cnt = distance_cm * 62.66; // 63.66 CNT/cm
+    motor_cnt = distance_cm * 62.64;
+
     A_CNT = get_timer_cnt(TIM3);
     B_CNT = get_timer_cnt(TIM2);
+    if (A_CNT > 0x7FFF)
+        A_CNT -= 0x10000;
+    if (B_CNT > 0x7FFF)
+        B_CNT -= 0x10000;
+
     a_acc_cnt += A_CNT;
     b_acc_cnt += B_CNT;
 
-    a_expect_speed = pid_location(a_acc_cnt, motor_cnt, pid_save.A_location);
-    b_expect_speed = pid_location(b_acc_cnt, motor_cnt, pid_save.B_location);
+    a_expect_cnt = pid_location(a_acc_cnt, motor_cnt, pid_save.a_location);
+    b_expect_cnt = pid_location(b_acc_cnt, motor_cnt, pid_save.b_location);
+    A_PWM = pid_speed(A_CNT, a_expect_cnt, pid_save.a_speed);
+    B_PWM = pid_speed(B_CNT, b_expect_cnt, pid_save.b_speed);
 
-    A_PWM = (a_expect_speed + b_expect_speed) / 2;
-
-    speed_controller(A_PWM, A_PWM);
+    load_pwm(A_PWM, B_PWM);
 }
