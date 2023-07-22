@@ -1,13 +1,15 @@
 # rt_thread driver
 ---
 
-一个循迹小车的模板，适用于白底黑线、白底红线。
+一个循迹小车的模板,移植的RTOS为RT-Thread
 
 ## 使用芯片
 STM32F103C8T6
 
 ## 更新内容
 * 增加较为稳定的速度环PID。
+* 增加稳定的位置环PID
+  >由于结构体使用较多所以放同一个文件里了
 
 __pid.c__
 ```
@@ -55,26 +57,27 @@ int pid_location(int actual_location, int expect_location, PID_TYPE pid)
 
 __control.c__
 ```
-void location_controller(uint16_t distance_cm)
+void location_controller(uint16_t distance_cm, CONTROL_TYPE *controller)
 {
+    float motor_cnt;
     motor_cnt = distance_cm * 62.64;
 
-    A_CNT = get_timer_cnt(TIM3);
-    B_CNT = get_timer_cnt(TIM2);
-    if (A_CNT > 0x7FFF)
-        A_CNT -= 0x10000;
-    if (B_CNT > 0x7FFF)
-        B_CNT -= 0x10000;
+    controller->A_CNT = get_timer_cnt(TIM3);
+    controller->B_CNT = get_timer_cnt(TIM2);
+    if (controller->A_CNT > 0x7FFF)
+        controller->A_CNT -= 0x10000;
+    if (controller->B_CNT > 0x7FFF)
+        controller->B_CNT -= 0x10000;
 
-    a_acc_cnt += A_CNT;
-    b_acc_cnt += B_CNT;
+    controller->A_ACC_CNT += controller->A_CNT;
+    controller->B_ACC_CNT += controller->B_CNT;
 
-    a_expect_cnt = pid_location(a_acc_cnt, motor_cnt, pid_save.a_location);
-    b_expect_cnt = pid_location(b_acc_cnt, motor_cnt, pid_save.b_location);
-    A_PWM = pid_speed(A_CNT, a_expect_cnt, pid_save.a_speed);
-    B_PWM = pid_speed(B_CNT, b_expect_cnt, pid_save.b_speed);
+    controller->A_EXPECT_CNT = pid_location(controller->A_ACC_CNT, 1220, pid_save.a_location);
+    controller->B_EXPECT_CNT = pid_location(controller->B_ACC_CNT, 1220, pid_save.b_location);
+    controller->A_PWM = pid_speed(controller->A_CNT, controller->A_EXPECT_CNT, pid_save.a_speed);
+    controller->B_PWM = pid_speed(controller->B_CNT, controller->B_EXPECT_CNT, pid_save.b_speed);
 
-    load_pwm(A_PWM, B_PWM);
+    load_pwm(controller->A_PWM, controller->B_PWM);
 }
 ```
 >周长C = 2* PI * R,一圈的脉冲数是1300,计算可得每cm的脉冲数。根据具体情况自行调整参数

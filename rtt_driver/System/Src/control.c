@@ -13,13 +13,22 @@ PID_SAVE pid_save = {
     {2, 0.5, 0, 0, 0, 0, 0},
 };
 
-float error_cnt[10] = {50, 40, 30, 20, 10, 10, 20, 30, 40, 50};
+CONTROL_SAVE con_save = {
 
+    // 速度控制器
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    // 位置控制器
+    {0, 0, 0, 0, 0, 0, 0, 0},
+};
+
+float error_cnt[10] = {50, 40, 30, 20, 10, 10, 20, 30, 40, 50};
 uint8_t gray_value;
 uint8_t gray_bit[8];
 uint8_t index_A;
 uint8_t index_B;
-
+/*
+ *灰度传感器偏差
+ */
 void gray_bias(float *A_BIAS, float *B_BIAS)
 {
     uint8_t i;
@@ -37,53 +46,56 @@ void gray_bias(float *A_BIAS, float *B_BIAS)
     *B_BIAS = error_cnt[index_B];
 }
 
-uint16_t A_PWM = 0;
-uint16_t B_PWM = 0;
-uint16_t A_CNT;
-uint16_t B_CNT;
+/*
+ *CCD偏差
+ */
+void ccd_bias(float *A_BIAS, float *B_BIAS, CCD_TYPE *ccd)
+{
+    /*待完善*/
+}
+
 /*
  *PID速度控制器
  *Excpect_A_CNT: A电机目标速度
  *Excpect_B_CNT: B电机预期速度
+ *  *controller：控制环参数结构体指针
  */
-void speed_controller(float Excpect_A_CNT, float Excpect_B_CNT)
+void speed_controller(float Excpect_A_CNT, float Excpect_B_CNT, CONTROL_TYPE *controller)
 {
-    A_CNT = get_timer_cnt(TIM3);
-    B_CNT = get_timer_cnt(TIM2);
-    A_PWM += pid_increment(A_CNT, Excpect_A_CNT, pid_save.a_increment);
-    B_PWM += pid_increment(B_CNT, Excpect_B_CNT, pid_save.b_increment);
+    controller->A_CNT = get_timer_cnt(TIM3);
+    controller->B_CNT = get_timer_cnt(TIM2);
+    controller->A_PWM += pid_increment(controller->A_CNT, Excpect_A_CNT, pid_save.a_increment);
+    controller->B_PWM += pid_increment(controller->B_CNT, Excpect_B_CNT, pid_save.b_increment);
 
-    load_pwm(A_PWM, B_PWM);
+    load_pwm(controller->A_PWM, controller->B_PWM);
 }
 
-float motor_cnt;
-uint16_t a_acc_cnt = 0;
-uint16_t b_acc_cnt = 0;
-int16_t a_expect_cnt;
-int16_t b_expect_cnt;
 /*
  *PID位置控制器
  *轮子周长 = 20.42cm (2*PI*R)
  *一圈CNT = 1300
+ *distance_cm：距离值
+ **controller：控制环参数结构体指针
  */
-void location_controller(uint16_t distance_cm)
+void location_controller(uint16_t distance_cm, CONTROL_TYPE *controller)
 {
+    float motor_cnt;
     motor_cnt = distance_cm * 62.64;
 
-    A_CNT = get_timer_cnt(TIM3);
-    B_CNT = get_timer_cnt(TIM2);
-    if (A_CNT > 0x7FFF)
-        A_CNT -= 0x10000;
-    if (B_CNT > 0x7FFF)
-        B_CNT -= 0x10000;
+    controller->A_CNT = get_timer_cnt(TIM3);
+    controller->B_CNT = get_timer_cnt(TIM2);
+    if (controller->A_CNT > 0x7FFF)
+        controller->A_CNT -= 0x10000;
+    if (controller->B_CNT > 0x7FFF)
+        controller->B_CNT -= 0x10000;
 
-    a_acc_cnt += A_CNT;
-    b_acc_cnt += B_CNT;
+    controller->A_ACC_CNT += controller->A_CNT;
+    controller->B_ACC_CNT += controller->B_CNT;
 
-    a_expect_cnt = pid_location(a_acc_cnt, motor_cnt, pid_save.a_location);
-    b_expect_cnt = pid_location(b_acc_cnt, motor_cnt, pid_save.b_location);
-    A_PWM = pid_speed(A_CNT, a_expect_cnt, pid_save.a_speed);
-    B_PWM = pid_speed(B_CNT, b_expect_cnt, pid_save.b_speed);
+    controller->A_EXPECT_CNT = pid_location(controller->A_ACC_CNT, 1220, pid_save.a_location);
+    controller->B_EXPECT_CNT = pid_location(controller->B_ACC_CNT, 1220, pid_save.b_location);
+    controller->A_PWM = pid_speed(controller->A_CNT, controller->A_EXPECT_CNT, pid_save.a_speed);
+    controller->B_PWM = pid_speed(controller->B_CNT, controller->B_EXPECT_CNT, pid_save.b_speed);
 
-    load_pwm(A_PWM, B_PWM);
+    load_pwm(controller->A_PWM, controller->B_PWM);
 }

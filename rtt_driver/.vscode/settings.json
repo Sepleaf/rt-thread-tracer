@@ -28,7 +28,8 @@
         "encoder.h": "c",
         "usart.h": "c",
         "beep.h": "c",
-        "functional": "c"
+        "functional": "c",
+        "ccd.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

@@ -9,6 +9,7 @@
 #include "beep.h"
 #include "usart.h"
 #include "encoder.h"
+#include "ccd.h"
 
 void rt_hw_board_init(void);
 void SysTick_Handler(void);

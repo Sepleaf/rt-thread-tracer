@@ -34,6 +34,7 @@
 .\objects\main.o: .\Driver\Inc\gray.h
 .\objects\main.o: .\System\Inc\delay.h
 .\objects\main.o: .\System\Inc\pid.h
+.\objects\main.o: .\System\Inc\structconfig.h
 .\objects\main.o: .\Driver\Inc\key.h
 .\objects\main.o: .\Driver\Inc\led.h
 .\objects\main.o: .\Driver\Inc\beep.h
@@ -41,6 +42,7 @@
 .\objects\main.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\main.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\main.o: .\Driver\Inc\encoder.h
+.\objects\main.o: .\Driver\Inc\ccd.h
 .\objects\main.o: .\rt-thread\include\rtthread.h
 .\objects\main.o: .\Board\rtconfig.h
 .\objects\main.o: .\rt-thread\include\rtthread.h

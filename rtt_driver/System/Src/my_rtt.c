@@ -7,8 +7,7 @@ static rt_thread_t gray_thread = RT_NULL;
 static void pid_thread_entry(void *parameter);
 static void gray_thread_entry(void *parameter);
 
-float A_TargetCNT;
-float B_TargetCNT;
+extern CONTROL_SAVE con_save;
 
 int my_rtt_init(void)
 {
@@ -44,7 +43,7 @@ static void pid_thread_entry(void *parameter)
 
     while (1)
     {
-        location_controller(200);
+        location_controller(20, &con_save.location_control);
 
         rt_thread_delay(5);
     }

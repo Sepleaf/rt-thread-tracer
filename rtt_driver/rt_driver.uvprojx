@@ -690,6 +690,11 @@
               <FileType>1</FileType>
               <FilePath>.\Driver\Src\usart.c</FilePath>
             </File>
+            <File>
+              <FileName>ccd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Driver\Src\ccd.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -734,6 +739,11 @@
               <FileName>my_rtt.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\System\Src\my_rtt.c</FilePath>
+            </File>
+            <File>
+              <FileName>structconfig.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\System\Inc\structconfig.h</FilePath>
             </File>
           </Files>
         </Group>

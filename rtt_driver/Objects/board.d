@@ -42,9 +42,11 @@
 .\objects\board.o: .\Driver\Inc\gray.h
 .\objects\board.o: .\System\Inc\delay.h
 .\objects\board.o: .\System\Inc\pid.h
+.\objects\board.o: .\System\Inc\structconfig.h
 .\objects\board.o: .\Driver\Inc\key.h
 .\objects\board.o: .\Driver\Inc\led.h
 .\objects\board.o: .\Driver\Inc\beep.h
 .\objects\board.o: .\Driver\Inc\usart.h
 .\objects\board.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\board.o: .\Driver\Inc\encoder.h
+.\objects\board.o: .\Driver\Inc\ccd.h

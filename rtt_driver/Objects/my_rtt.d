@@ -35,6 +35,7 @@
 .\objects\my_rtt.o: .\Driver\Inc\gray.h
 .\objects\my_rtt.o: .\System\Inc\delay.h
 .\objects\my_rtt.o: .\System\Inc\pid.h
+.\objects\my_rtt.o: .\System\Inc\structconfig.h
 .\objects\my_rtt.o: .\Driver\Inc\key.h
 .\objects\my_rtt.o: .\Driver\Inc\led.h
 .\objects\my_rtt.o: .\Driver\Inc\beep.h
@@ -42,6 +43,7 @@
 .\objects\my_rtt.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\my_rtt.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\my_rtt.o: .\Driver\Inc\encoder.h
+.\objects\my_rtt.o: .\Driver\Inc\ccd.h
 .\objects\my_rtt.o: .\rt-thread\include\rtthread.h
 .\objects\my_rtt.o: .\Board\rtconfig.h
 .\objects\my_rtt.o: .\rt-thread\include\rtthread.h

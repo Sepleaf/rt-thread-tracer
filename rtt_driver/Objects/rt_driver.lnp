@@ -33,6 +33,7 @@
 ".\objects\encoder.o"
 ".\objects\beep.o"
 ".\objects\usart.o"
+".\objects\ccd.o"
 ".\objects\board.o"
 ".\objects\main.o"
 ".\objects\stm32f10x_it.o"
