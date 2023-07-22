@@ -99,9 +99,6 @@ uint8_t myiic_receive_ack(void)
     return AckBit;
 }
 
-/*
- *灰度传感器的写入
- */
 void gray_write_reg(uint8_t RegAddress, uint8_t Data)
 {
     myiic_start();
@@ -134,6 +131,10 @@ uint8_t gray_read_reg(uint16_t RegAddress)
     return Data;
 }
 
+/*
+ *获取灰度传感器的值
+ *retval: 8位无符号数
+ */
 uint8_t get_gray_value()
 {
     return gray_read_reg(0xDD);

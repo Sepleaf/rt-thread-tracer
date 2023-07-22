@@ -7,7 +7,7 @@ static rt_thread_t gray_thread = RT_NULL;
 static void pid_thread_entry(void *parameter);
 static void gray_thread_entry(void *parameter);
 
-// 变量声明
+/*变量声明*/
 extern CONTROL_SAVE con_save;
 
 int my_rtt_init(void)

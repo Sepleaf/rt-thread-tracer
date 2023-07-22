@@ -123,6 +123,11 @@ void motor_back()
 	BIN2_set;
 }
 
+/*
+ * PWM输出
+ * PWMA：A通道输出的PWM
+ * PWMB：B通道输出的PWM
+ */
 void load_pwm(uint16_t PWMA, uint16_t PWMB)
 {
 	if (PWMA > MAX_PWM)

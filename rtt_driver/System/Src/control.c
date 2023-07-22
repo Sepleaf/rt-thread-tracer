@@ -1,5 +1,6 @@
 #include "control.h"
 
+/*PID 参数初始化*/
 PID_SAVE pid_save = {
 
     // 位置环
@@ -13,6 +14,7 @@ PID_SAVE pid_save = {
     {2, 0.5, 0, 0, 0, 0, 0},
 };
 
+/*控制器参数初始化*/
 CONTROL_SAVE con_save = {
 
     // 速度控制器
@@ -27,7 +29,9 @@ uint8_t gray_bit[8];
 uint8_t index_A;
 uint8_t index_B;
 /*
- *灰度传感器偏差
+ * 灰度传感器偏差
+ * *A_BIAS A侧误差值
+ * *B_BIAS B侧误差值
  */
 void gray_bias(float *A_BIAS, float *B_BIAS)
 {
@@ -55,10 +59,10 @@ void ccd_bias(float *A_BIAS, float *B_BIAS, CCD_TYPE *ccd)
 }
 
 /*
- *PID速度控制器
- *Excpect_A_CNT: A电机目标速度
- *Excpect_B_CNT: B电机预期速度
- *  *controller：控制环参数结构体指针
+ * PID速度控制器
+ * Excpect_A_CNT: A电机目标速度
+ * Excpect_B_CNT: B电机预期速度
+ *   *controller：控制器参数结构体指针
  */
 void speed_controller(float Excpect_A_CNT, float Excpect_B_CNT, CONTROL_TYPE *controller)
 {
@@ -71,11 +75,11 @@ void speed_controller(float Excpect_A_CNT, float Excpect_B_CNT, CONTROL_TYPE *co
 }
 
 /*
- *PID位置控制器
- *轮子周长 = 20.42cm (2*PI*R)
- *一圈CNT = 1300
- *distance_cm：距离值
- **controller：控制环参数结构体指针
+ * PID位置控制器
+ * 轮子周长 = 20.42cm (2*PI*R)
+ * 一圈CNT = 1300
+ * distance_cm：距离值
+ * *controller：控制器参数结构体指针
  */
 void location_controller(uint16_t distance_cm, CONTROL_TYPE *controller)
 {
@@ -84,14 +88,15 @@ void location_controller(uint16_t distance_cm, CONTROL_TYPE *controller)
 
     controller->A_CNT = get_timer_cnt(TIM3);
     controller->B_CNT = get_timer_cnt(TIM2);
+    // 反转纠正
     if (controller->A_CNT > 0x7FFF)
         controller->A_CNT -= 0x10000;
     if (controller->B_CNT > 0x7FFF)
         controller->B_CNT -= 0x10000;
-
+    // CNT累加
     controller->A_ACC_CNT += controller->A_CNT;
     controller->B_ACC_CNT += controller->B_CNT;
-
+    // 位置环->速度环 PID计算
     controller->A_EXPECT_CNT = pid_location(controller->A_ACC_CNT, motor_cnt, pid_save.a_location);
     controller->B_EXPECT_CNT = pid_location(controller->B_ACC_CNT, motor_cnt, pid_save.b_location);
     controller->A_PWM = pid_speed(controller->A_CNT, controller->A_EXPECT_CNT, pid_save.a_speed);

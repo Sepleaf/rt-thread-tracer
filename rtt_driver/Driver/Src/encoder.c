@@ -86,6 +86,11 @@ void encoder_init()
     encoder_b_init();
 }
 
+/*
+ *获取编码器的计数值CNT
+ *TIMx：    定时器序号
+ *retval:   CNT
+ */
 uint16_t get_timer_cnt(TIM_TypeDef *TIMx)
 {
     uint16_t CNT;

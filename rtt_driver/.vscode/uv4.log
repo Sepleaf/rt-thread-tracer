@@ -1,3 +1,16 @@
-Load "d:\\CS\\github\\rt_driver\\rtt_driver\\Objects\\rt_driver.axf" 
-Erase Done.Programming Done.Verify OK.Application running ...
-Flash Load finished at 15:06:45
+*** Using Compiler 'V5.06 update 5 (build 528)', folder: 'D:\Keil\ARM\ARMCC\Bin'
+Build target 'rt_driver'
+compiling pid.c...
+compiling motor.c...
+Driver\Src\motor.c(135): warning:  #186-D: pointless comparison of unsigned integer with zero
+  	if (PWMB < 
+IN_PWM)
+Driver\Src\motor.c(140): warning:  #186-D: pointless comparison of unsigned integer with zero
+  	if (PWMB < 
+IN_PWM)
+Driver\Src\motor.c: 2 warnings, 0 errors
+linking...
+Program Size: Code=12280 RO-data=576 RW-data=412 ZI-data=5948  
+FromELF: creating hex file...
+".\Objects\rt_driver.axf" - 0 Error(s), 2 Warning(s).
+Build Time Elapsed:  00:00:02
