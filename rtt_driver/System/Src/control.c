@@ -92,8 +92,8 @@ void location_controller(uint16_t distance_cm, CONTROL_TYPE *controller)
     controller->A_ACC_CNT += controller->A_CNT;
     controller->B_ACC_CNT += controller->B_CNT;
 
-    controller->A_EXPECT_CNT = pid_location(controller->A_ACC_CNT, 1220, pid_save.a_location);
-    controller->B_EXPECT_CNT = pid_location(controller->B_ACC_CNT, 1220, pid_save.b_location);
+    controller->A_EXPECT_CNT = pid_location(controller->A_ACC_CNT, motor_cnt, pid_save.a_location);
+    controller->B_EXPECT_CNT = pid_location(controller->B_ACC_CNT, motor_cnt, pid_save.b_location);
     controller->A_PWM = pid_speed(controller->A_CNT, controller->A_EXPECT_CNT, pid_save.a_speed);
     controller->B_PWM = pid_speed(controller->B_CNT, controller->B_EXPECT_CNT, pid_save.b_speed);
 
