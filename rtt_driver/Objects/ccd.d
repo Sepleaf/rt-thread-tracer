@@ -30,3 +30,4 @@
 .\objects\ccd.o: .\library\stm32f10x_wwdg.h
 .\objects\ccd.o: .\library\misc.h
 .\objects\ccd.o: .\System\Inc\delay.h
+.\objects\ccd.o: .\System\Inc\structconfig.h

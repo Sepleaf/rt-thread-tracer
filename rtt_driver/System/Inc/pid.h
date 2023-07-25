@@ -2,8 +2,8 @@
 #define __PID_H
 #include "structconfig.h"
 
-int pid_location(int actual_location, int expect_location, PID_TYPE pid);
-int pid_speed(int actual_speed, int expect_speed, PID_TYPE pid);
-int pid_increment(int actual_cnt, int expect_cnt, PID_TYPE pid);
+float pid_location(float actual_location, float expect_location, PID_TYPE pid);
+float pid_speed(float actual_speed, float expect_speed, PID_TYPE pid);
+float pid_increment(float actual_cnt, float expect_cnt, PID_TYPE pid);
 
 #endif

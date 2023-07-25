@@ -3,12 +3,13 @@
 
 #include "board.h"
 #include "rtthread.h"
+
 #include "control.h"
 #include "key.h"
 #include "led.h"
 #include "beep.h"
 #include "motor.h"
-#include "structconfig.h"
+#include "OLED.h"
 
 int my_rtt_init(void);
 

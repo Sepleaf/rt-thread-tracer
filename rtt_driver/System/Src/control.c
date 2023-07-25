@@ -9,9 +9,12 @@ PID_SAVE pid_save = {
     // 速度环
     {6, 0.01, 0, 0, 0, 0, 0},
     {6, 0.01, 0, 0, 0, 0, 0},
+    // 偏差环
+    {100, 0.01, 3, 0, 0, 0, 0},
+    {100, 0.01, 3, 0, 0, 0, 0},
     // 增量环
-    {2, 0.5, 0, 0, 0, 0, 0},
-    {2, 0.5, 0, 0, 0, 0, 0},
+    {3, 0.5, 0, 0, 0, 0, 0},
+    {3, 0.5, 0, 0, 0, 0, 0},
 };
 
 /*控制器参数初始化*/
@@ -20,6 +23,8 @@ CONTROL_SAVE con_save = {
     // 速度控制器
     {0, 0, 0, 0, 0, 0, 0, 0},
     // 位置控制器
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    // 偏差控制器
     {0, 0, 0, 0, 0, 0, 0, 0},
 };
 
@@ -48,14 +53,6 @@ void gray_bias(float *A_BIAS, float *B_BIAS)
 
     *A_BIAS = error_cnt[index_A];
     *B_BIAS = error_cnt[index_B];
-}
-
-/*
- *CCD偏差
- */
-void ccd_bias(float *A_BIAS, float *B_BIAS, CCD_TYPE *ccd)
-{
-    /*待完善*/
 }
 
 /*
@@ -101,6 +98,35 @@ void location_controller(uint16_t distance_cm, CONTROL_TYPE *controller)
     controller->B_EXPECT_CNT = pid_location(controller->B_ACC_CNT, motor_cnt, pid_save.b_location);
     controller->A_PWM = pid_speed(controller->A_CNT, controller->A_EXPECT_CNT, pid_save.a_speed);
     controller->B_PWM = pid_speed(controller->B_CNT, controller->B_EXPECT_CNT, pid_save.b_speed);
+
+    load_pwm(controller->A_PWM, controller->B_PWM);
+}
+
+/*
+ * 偏差控制器
+ * a_bias：a侧偏差值
+ * b_bias：b侧偏差值
+ * *controller：控制器参数结构体指针
+ */
+void bias_controller(float a_bias, float b_bias, CONTROL_TYPE *controller)
+{
+    // 误差累积
+    controller->A_CNT = get_timer_cnt(TIM3);
+    controller->B_CNT = get_timer_cnt(TIM2);
+    // 反转纠正
+    if (controller->A_CNT > 0x7FFF)
+        controller->A_CNT -= 0x10000;
+    if (controller->B_CNT > 0x7FFF)
+        controller->B_CNT -= 0x10000;
+    // CNT累加
+    controller->A_ACC_CNT += controller->A_CNT;
+    controller->B_ACC_CNT += controller->B_CNT;
+    // 偏差PID 与 位置PID 通用
+    controller->A_EXPECT_CNT = pid_location(a_bias, 0, pid_save.a_bias);
+    controller->B_EXPECT_CNT = pid_location(b_bias, 0, pid_save.b_bias);
+
+    controller->A_PWM = pid_increment(controller->A_CNT, controller->A_EXPECT_CNT + 1000, pid_save.a_increment);
+    controller->B_PWM = pid_increment(controller->B_CNT, controller->B_EXPECT_CNT + 1000, pid_save.b_increment);
 
     load_pwm(controller->A_PWM, controller->B_PWM);
 }

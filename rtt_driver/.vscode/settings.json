@@ -29,7 +29,8 @@
         "usart.h": "c",
         "beep.h": "c",
         "functional": "c",
-        "ccd.h": "c"
+        "ccd.h": "c",
+        "random": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

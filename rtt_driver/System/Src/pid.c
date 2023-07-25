@@ -7,7 +7,7 @@
  *            pid:   PID参数结构体
  *         retval：  PID计算结果
  */
-int pid_location(int actual_location, int expect_location, PID_TYPE pid)
+float pid_location(float actual_location, float expect_location, PID_TYPE pid)
 {
     pid.bias = expect_location - actual_location;
     pid.integral_bias += pid.bias;
@@ -37,22 +37,22 @@ int pid_location(int actual_location, int expect_location, PID_TYPE pid)
  *         pid:   PID参数结构体
  *      retval：  PID计算结果
  */
-int pid_speed(int actual_speed, int expect_speed, PID_TYPE pid)
+float pid_speed(float actual_speed, float expect_speed, PID_TYPE pid)
 {
 
     pid.bias = expect_speed - actual_speed;
     if (pid.bias == 0)
-        pid.last_bias = 0;
+        pid.integral_bias = 0;
 
-    pid.last_bias += pid.bias;
-    // 误差限幅
-    if (pid.last_bias > 10000)
-        pid.last_bias = 10000;
-    if (pid.last_bias < -10000)
-        pid.last_bias = -10000;
+    pid.integral_bias += pid.bias;
+    // 积分限幅
+    if (pid.integral_bias > 10000)
+        pid.integral_bias = 10000;
+    if (pid.integral_bias < -10000)
+        pid.integral_bias = -10000;
 
     pid.output = pid.kp * pid.bias +
-                 pid.ki * pid.last_bias;
+                 pid.ki * pid.integral_bias;
 
     if (pid.output > 5000)
         pid.output = 5000;
@@ -69,7 +69,7 @@ int pid_speed(int actual_speed, int expect_speed, PID_TYPE pid)
  *       pid：   PID参数结构体
  *    retval：  PID计算结果
  */
-int pid_increment(int actual_cnt, int expect_cnt, PID_TYPE pid)
+float pid_increment(float actual_cnt, float expect_cnt, PID_TYPE pid)
 {
     pid.bias = expect_cnt - actual_cnt;
 

@@ -9,6 +9,7 @@ static void gray_thread_entry(void *parameter);
 
 /*变量声明*/
 extern CONTROL_SAVE con_save;
+extern CCD_TYPE ccd;
 
 int my_rtt_init(void)
 {
@@ -40,13 +41,17 @@ int my_rtt_init(void)
 
 static void pid_thread_entry(void *parameter)
 {
+    float a_bias;
+    float b_bias;
+
     motor_forward();
 
     while (1)
     {
-        location_controller(20, &con_save.location_control);
+        ccd_bias(&a_bias, &b_bias);
+        bias_controller(a_bias, b_bias, &con_save.bias_control);
 
-        rt_thread_delay(5);
+        rt_thread_delay(10);
     }
 }
 
@@ -54,8 +59,9 @@ static void gray_thread_entry(void *parameter)
 {
     while (1)
     {
-        // gray_bias(&A_TargetCNT, &B_TargetCNT);
+        data_acquisition();
+        OLED_ShowNum(1, 1, ccd.median, 3);
 
-        // rt_thread_delay(10);
+        rt_thread_delay(10);
     }
 }

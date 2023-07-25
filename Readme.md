@@ -86,6 +86,35 @@ void location_controller(uint16_t distance_cm, CONTROL_TYPE *controller)
 
   __待更新__
 
+* CCD循迹
+
+__control.c__
+```
+void bias_controller(float a_bias, float b_bias, CONTROL_TYPE *controller)
+{
+    // 误差累积
+    controller->A_CNT = get_timer_cnt(TIM3);
+    controller->B_CNT = get_timer_cnt(TIM2);
+    // 反转纠正
+    if (controller->A_CNT > 0x7FFF)
+        controller->A_CNT -= 0x10000;
+    if (controller->B_CNT > 0x7FFF)
+        controller->B_CNT -= 0x10000;
+    // CNT累加
+    controller->A_ACC_CNT += controller->A_CNT;
+    controller->B_ACC_CNT += controller->B_CNT;
+    // 偏差PID 与 位置PID 通用
+    controller->A_EXPECT_CNT = pid_location(a_bias, 0, pid_save.a_bias);
+    controller->B_EXPECT_CNT = pid_location(b_bias, 0, pid_save.b_bias);
+
+    controller->A_PWM = pid_increment(controller->A_CNT, controller->A_EXPECT_CNT + 1000, pid_save.a_increment);
+    controller->B_PWM = pid_increment(controller->B_CNT, controller->B_EXPECT_CNT + 1000, pid_save.b_increment);
+
+    load_pwm(controller->A_PWM, controller->B_PWM);
+}
+```
+  
+
 ## 功能
 本项目使用自适应灰度传感器的反馈，rt-thread移植，附加反馈计算控制车身实现循迹，参数不固定，由电机情况而决定。
 

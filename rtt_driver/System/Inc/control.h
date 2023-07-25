@@ -8,8 +8,8 @@
 #include "structconfig.h"
 
 void gray_bias(float *A_BIAS, float *B_BIAS);
-void ccd_bias(float *A_BIAS, float *B_BIAS, CCD_TYPE *ccd);
 void speed_controller(float Excpect_A_CNT, float Excpect_B_CNT, CONTROL_TYPE *controller);
 void location_controller(uint16_t distance_cm, CONTROL_TYPE *controller);
+void bias_controller(float a_bias, float b_bias, CONTROL_TYPE *controller);
 
 #endif

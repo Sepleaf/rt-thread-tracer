@@ -23,22 +23,42 @@ typedef struct
     // 速度环
     PID_TYPE a_speed;
     PID_TYPE b_speed;
+    // 偏差环
+    PID_TYPE a_bias;
+    PID_TYPE b_bias;
     // 增量环
     PID_TYPE a_increment;
     PID_TYPE b_increment;
 } PID_SAVE;
 
-/*控制环参数*/
+// CCD结构体
 typedef struct
 {
-    uint16_t A_CNT;
-    uint16_t B_CNT;
+    uint8_t times;
 
-    uint16_t A_ACC_CNT;
-    uint16_t B_ACC_CNT;
+    uint8_t right_acq;
+    uint8_t left_acq;
+    uint8_t left_value;
+    uint8_t right_value;
 
-    int16_t A_EXPECT_CNT;
-    int16_t B_EXPECT_CNT;
+    uint8_t median;
+    uint8_t threshold;
+
+    uint16_t value_max;
+    uint16_t value_min;
+} CCD_TYPE;
+
+/*控制器参数*/
+typedef struct
+{
+    float A_CNT;
+    float B_CNT;
+
+    float A_ACC_CNT;
+    float B_ACC_CNT;
+
+    float A_EXPECT_CNT;
+    float B_EXPECT_CNT;
 
     uint16_t A_PWM;
     uint16_t B_PWM;
@@ -47,8 +67,12 @@ typedef struct
 
 typedef struct
 {
+    // 速度控制器
     CONTROL_TYPE speed_control;
+    // 位置控制器
     CONTROL_TYPE location_control;
+    // 偏差控制器
+    CONTROL_TYPE bias_control;
 } CONTROL_SAVE;
 
 #endif

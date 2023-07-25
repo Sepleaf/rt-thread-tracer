@@ -59,8 +59,8 @@ void motor_pwm_init(uint16_t arr, uint16_t psc)
 	TIM_OCInitStructure.TIM_OutputState 				= TIM_OutputState_Enable;
 	TIM_OCInitStructure.TIM_OutputNState 				= TIM_OutputNState_Enable;
 
-	TIM_OCInitStructure.TIM_OCNPolarity 				= TIM_OCNPolarity_High;
 	TIM_OCInitStructure.TIM_OCPolarity 					= TIM_OCPolarity_High;
+	TIM_OCInitStructure.TIM_OCNPolarity 				= TIM_OCNPolarity_High;
 
 	TIM_OC1Init(TIMx, &TIM_OCInitStructure);
 	TIM_OC4Init(TIMx, &TIM_OCInitStructure);
