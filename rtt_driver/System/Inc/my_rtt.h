@@ -10,6 +10,7 @@
 #include "beep.h"
 #include "motor.h"
 #include "OLED.h"
+#include "gray.h"
 
 int my_rtt_init(void);
 

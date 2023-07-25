@@ -1,9 +1,9 @@
 #include "gray.h"
 
-#define IIC_CLK             RCC_APB2Periph_GPIOB
-#define IIC_GPIO            GPIOB
-#define SCL_Pin             GPIO_Pin_8
-#define SDA_Pin             GPIO_Pin_9
+#define IIC_CLK                 RCC_APB2Periph_GPIOB
+#define IIC_GPIO                GPIOB
+#define SCL_Pin                 GPIO_Pin_8
+#define SDA_Pin                 GPIO_Pin_9
 
 #define gray_addr 0x9E
 
@@ -138,4 +138,63 @@ uint8_t gray_read_reg(uint16_t RegAddress)
 uint8_t get_gray_value()
 {
     return gray_read_reg(0xDD);
+}
+
+int bias_list[8] = {0, 1, 2, 5, 6, 8, 10, 12};
+
+int gray_bias_list(uint8_t bias)
+{
+    switch (bias)
+    {
+    case 0xFF:
+        return bias_list[0];
+    case 0xE7:
+        return bias_list[0];
+
+    /***************/
+    case 0xF7:
+        return -bias_list[1];
+    case 0xF3:
+        return -bias_list[2];
+    case 0xFB:
+        return -bias_list[3];
+    case 0xF9:
+        return -bias_list[4];
+    case 0xFD:
+        return -bias_list[5];
+    case 0xFC:
+        return -bias_list[6];
+    case 0xFE:
+        return -bias_list[7];
+
+    /***************/
+    case 0xEF:
+        return bias_list[1];
+    case 0xCF:
+        return bias_list[2];
+    case 0xDF:
+        return bias_list[3];
+    case 0x9F:
+        return bias_list[4];
+    case 0xBF:
+        return bias_list[5];
+    case 0x3F:
+        return bias_list[6];
+    case 0x7F:
+        return bias_list[7];
+    default:
+        return 0;
+    }
+}
+/*
+ * 灰度传感器偏差
+ * *A_BIAS A侧误差值
+ * *B_BIAS B侧误差值
+ */
+void gray_bias(float *A_BIAS, float *B_BIAS)
+{
+    float bias;
+    bias = gray_bias_list(get_gray_value());
+    *A_BIAS = bias;
+    *B_BIAS = -bias;
 }

@@ -1,28 +1,28 @@
 #include "ccd.h"
 
-#define ADCx                    ADC1
-#define ADC_CLK                 RCC_APB2Periph_ADC1
-#define GPIO_CLK                RCC_APB2Periph_GPIOA
-#define ADC_GPIO                GPIOA
-#define ADC_Pin                 GPIO_Pin_4
+#define ADCx                            ADC1
+#define ADC_CLK                         RCC_APB2Periph_ADC1
+#define GPIO_CLK                        RCC_APB2Periph_GPIOA
+#define ADC_GPIO                        GPIOA
+#define ADC_Pin                         GPIO_Pin_4
 
-#define CCD_CLK                 RCC_APB2Periph_GPIOA
-#define CCD_GPIO                GPIOA
-#define SI_Pin                  GPIO_Pin_3
-#define CLK_Pin                 GPIO_Pin_2
+#define CCD_CLK                         RCC_APB2Periph_GPIOA
+#define CCD_GPIO                        GPIOA
+#define SI_Pin                          GPIO_Pin_3
+#define CLK_Pin                         GPIO_Pin_2
 
-#define GPIOA_ODR_Addr          (GPIOA_BASE+12) //0x4001080C 
-#define BITBAND(addr, bitnum)   ((addr & 0xF0000000)+0x2000000+((addr &0xFFFFF)<<5)+(bitnum<<2)) 
-#define MEM_ADDR(addr)          *((volatile unsigned long  *)(addr)) 
-#define BIT_ADDR(addr, bitnum)  MEM_ADDR(BITBAND(addr, bitnum)) 
-#define PAout(n)                BIT_ADDR(GPIOA_ODR_Addr,n)
+#define GPIOA_ODR_Addr                  (GPIOA_BASE + 12) // 0x4001080C
+#define BITBAND(addr, bitnum)           ((addr & 0xF0000000) + 0x2000000 + ((addr & 0xFFFFF) << 5) + (bitnum << 2))
+#define MEM_ADDR(addr)                  *((volatile unsigned long *)(addr))
+#define BIT_ADDR(addr, bitnum)          MEM_ADDR(BITBAND(addr, bitnum))
+#define PAout(n)                        BIT_ADDR(GPIOA_ODR_Addr, n)
 
-#define tsl_si                  PAout(3)
-#define tsl_clk                 PAout(2)
-//#define si_set                  GPIO_SetBits(CCD_GPIO, SI_Pin)
-//#define clk_set                 GPIO_SetBits(CCD_GPIO, CLK_Pin)
-//#define si_reset                GPIO_ResetBits(CCD_GPIO, SI_Pin)
-//#define clk_reset               GPIO_ResetBits(CCD_GPIO, CLK_Pin)
+#define tsl_si PAout(3)
+#define tsl_clk PAout(2)
+// #define si_set                  GPIO_SetBits(CCD_GPIO, SI_Pin)
+// #define clk_set                 GPIO_SetBits(CCD_GPIO, CLK_Pin)
+// #define si_reset                GPIO_ResetBits(CCD_GPIO, SI_Pin)
+// #define clk_reset               GPIO_ResetBits(CCD_GPIO, CLK_Pin)
 
 void ccd_adc_init()
 {
@@ -32,17 +32,17 @@ void ccd_adc_init()
     RCC_APB2PeriphClockCmd(GPIO_CLK | ADC_CLK, ENABLE);
     RCC_ADCCLKConfig(RCC_PCLK2_Div6);
 
-    GPIO_InitStructure.GPIO_Pin =                   ADC_Pin;
-    GPIO_InitStructure.GPIO_Mode =                  GPIO_Mode_AIN;
+    GPIO_InitStructure.GPIO_Pin                 = ADC_Pin;
+    GPIO_InitStructure.GPIO_Mode                = GPIO_Mode_AIN;
     GPIO_Init(ADC_GPIO, &GPIO_InitStructure);
     ADC_DeInit(ADCx);
 
-    ADC_InitStructure.ADC_Mode =                    ADC_Mode_Independent;
-    ADC_InitStructure.ADC_ScanConvMode =            DISABLE;
-    ADC_InitStructure.ADC_ContinuousConvMode =      DISABLE;
-    ADC_InitStructure.ADC_ExternalTrigConv =        ADC_ExternalTrigConv_None;
-    ADC_InitStructure.ADC_DataAlign =               ADC_DataAlign_Right;
-    ADC_InitStructure.ADC_NbrOfChannel =            1;
+    ADC_InitStructure.ADC_Mode                  = ADC_Mode_Independent;
+    ADC_InitStructure.ADC_ScanConvMode          = DISABLE;
+    ADC_InitStructure.ADC_ContinuousConvMode    = DISABLE;
+    ADC_InitStructure.ADC_ExternalTrigConv      = ADC_ExternalTrigConv_None;
+    ADC_InitStructure.ADC_DataAlign             = ADC_DataAlign_Right;
+    ADC_InitStructure.ADC_NbrOfChannel          = 1;
     ADC_Init(ADCx, &ADC_InitStructure);
 
     ADC_Cmd(ADCx, ENABLE);
@@ -59,13 +59,13 @@ void ccd_init()
     GPIO_InitTypeDef GPIO_InitStructure;
     RCC_APB2PeriphClockCmd(CCD_CLK, ENABLE);
 
-    GPIO_InitStructure.GPIO_Pin =                   CLK_Pin;
-    GPIO_InitStructure.GPIO_Mode =                  GPIO_Mode_Out_PP;
-    GPIO_InitStructure.GPIO_Speed =                 GPIO_Speed_50MHz;
+    GPIO_InitStructure.GPIO_Pin                 = CLK_Pin;
+    GPIO_InitStructure.GPIO_Mode                = GPIO_Mode_Out_PP;
+    GPIO_InitStructure.GPIO_Speed               = GPIO_Speed_50MHz;
     GPIO_Init(CCD_GPIO, &GPIO_InitStructure);
     GPIO_SetBits(CCD_GPIO, CLK_Pin);
 
-    GPIO_InitStructure.GPIO_Pin =                   SI_Pin;
+    GPIO_InitStructure.GPIO_Pin                 = SI_Pin;
     GPIO_Init(CCD_GPIO, &GPIO_InitStructure);
     GPIO_SetBits(CCD_GPIO, SI_Pin);
 }
@@ -78,12 +78,12 @@ uint16_t get_ccd_value(uint8_t channel)
 {
     ADC_RegularChannelConfig(ADCx, channel, 1, ADC_SampleTime_239Cycles5);
     ADC_SoftwareStartConvCmd(ADCx, ENABLE);
-    while (!ADC_GetFlagStatus(ADCx, ADC_FLAG_EOC));
+    while (!ADC_GetFlagStatus(ADCx, ADC_FLAG_EOC))
+        ;
     return ADC_GetConversionValue(ADCx);
 }
-CCD_TYPE ccd={
-    100, 0, 0, 0, 0, 0, 0, 0, 0
-};
+CCD_TYPE ccd = {
+    100, 0, 0, 0, 0, 0, 0, 0, 0};
 /*
  *计算CCD中值
  */
@@ -91,20 +91,20 @@ void data_acquisition()
 {
     tsl_clk = 1;
     tsl_si = 0;
-    //clk_set;
-    //si_reset;
+    // clk_set;
+    // si_reset;
     delay_us(ccd.times);
 
     tsl_si = 1;
     tsl_clk = 0;
-    //si_set;
-    //clk_reset;
+    // si_set;
+    // clk_reset;
     delay_us(ccd.times);
 
     tsl_clk = 1;
     tsl_si = 0;
-    //clk_set;
-    //si_reset;
+    // clk_set;
+    // si_reset;
     delay_us(ccd.times);
 
     uint8_t i = 0;
@@ -113,12 +113,12 @@ void data_acquisition()
     for (i = 0; i < 128; i++)
     {
         tsl_clk = 0;
-        //clk_reset;
+        // clk_reset;
         delay_us(ccd.times); // 曝光时间
         ccd_adc[t] = (uint8_t)((float)get_ccd_value(ADC_Channel_4) / 4096 * 255);
         t++;
         tsl_clk = 1;
-        //clk_set;
+        // clk_set;
         delay_us(ccd.times);
     }
 
@@ -166,7 +166,6 @@ void data_acquisition()
             break;
         }
     }
-
     ccd.median = (ccd.right_value + ccd.left_value) / 2;
 }
 

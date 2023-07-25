@@ -71,7 +71,7 @@ void rt_hw_board_init()
     _SysTick_Config(SystemCoreClock / RT_TICK_PER_SECOND);
 
     motor_pwm_init(7200 - 1, 1 - 1);
-    // gray_iic_init();
+    gray_iic_init();
     encoder_init();
     //  key_init();
     ccd_init();

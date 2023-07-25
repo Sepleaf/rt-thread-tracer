@@ -13,8 +13,8 @@ PID_SAVE pid_save = {
     {100, 0.01, 3, 0, 0, 0, 0},
     {100, 0.01, 3, 0, 0, 0, 0},
     // 增量环
-    {3, 0.5, 0, 0, 0, 0, 0},
-    {3, 0.5, 0, 0, 0, 0, 0},
+    {2, 0.01, 0, 0, 0, 0, 0},
+    {2, 0.01, 0, 0, 0, 0, 0},
 };
 
 /*控制器参数初始化*/
@@ -27,33 +27,6 @@ CONTROL_SAVE con_save = {
     // 偏差控制器
     {0, 0, 0, 0, 0, 0, 0, 0},
 };
-
-float error_cnt[10] = {50, 40, 30, 20, 10, 10, 20, 30, 40, 50};
-uint8_t gray_value;
-uint8_t gray_bit[8];
-uint8_t index_A;
-uint8_t index_B;
-/*
- * 灰度传感器偏差
- * *A_BIAS A侧误差值
- * *B_BIAS B侧误差值
- */
-void gray_bias(float *A_BIAS, float *B_BIAS)
-{
-    uint8_t i;
-
-    gray_value = get_gray_value();
-    for (i = 0; i < 8; i++)
-        gray_bit[i] = gray_value & (0x01 << i);
-    for (i = 0; i < 8; i++)
-    {
-        index_A = 7 - i;
-        index_B = i;
-    }
-
-    *A_BIAS = error_cnt[index_A];
-    *B_BIAS = error_cnt[index_B];
-}
 
 /*
  * PID速度控制器
