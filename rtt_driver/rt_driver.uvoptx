@@ -151,12 +151,7 @@
         <Ww>
           <count>0</count>
           <WinNumber>1</WinNumber>
-          <ItemText>me_value,0x0A</ItemText>
-        </Ww>
-        <Ww>
-          <count>1</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>adc_value,0x0A</ItemText>
+          <ItemText>a_value,0x0A</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>
