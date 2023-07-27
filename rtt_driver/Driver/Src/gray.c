@@ -140,7 +140,7 @@ uint8_t get_gray_value()
     return gray_read_reg(0xDD);
 }
 
-int bias_list[8] = {0, 5, 8, 12, 16, 20, 22, 24};
+int bias_list[8] = {0, 1, 2, 3, 5, 6, 8, 10};
 
 int gray_bias_list(uint8_t bias)
 {
@@ -182,6 +182,8 @@ int gray_bias_list(uint8_t bias)
         return bias_list[6];
     case 0x7F:
         return bias_list[7];
+
+    /***************/
     default:
         return 0;
     }

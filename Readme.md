@@ -109,9 +109,9 @@ int pid_location(int actual_location, int expect_location, PID_TYPE pid)
 
 __gray.c__
 ```
-bias_list[8] = {0, 1, 2, 5, 6, 8, 10, 12};
+bias_list[8] = {0, 1, 2, 3, 5, 6, 8, 10};
 ```
-
+>结合具体情况适当更改偏差值
 * 偏差控制器
 
 __control.c__
@@ -126,16 +126,16 @@ void bias_controller(float a_bias, float b_bias, CONTROL_TYPE *controller)
         controller->A_CNT -= 0x10000;
     if (controller->B_CNT > 0x7FFF)
         controller->B_CNT -= 0x10000;
-    // CNT累加
-    controller->A_ACC_CNT += controller->A_CNT;
-    controller->B_ACC_CNT += controller->B_CNT;
-    // 偏差PID 与 位置PID 通用
-    controller->A_EXPECT_CNT = pid_location(a_bias, 0, pid_save.a_bias);
-    controller->B_EXPECT_CNT = pid_location(b_bias, 0, pid_save.b_bias);
 
-    // A_EXPECT_CNT + 1000 为速度控制，基础速度为1000（误差为0的时候小车不停）
-    controller->A_PWM = pid_increment(controller->A_CNT, controller->A_EXPECT_CNT + 1000, pid_save.a_increment);
-    controller->B_PWM = pid_increment(controller->B_CNT, controller->B_EXPECT_CNT + 1000, pid_save.b_increment);
+    //  偏差PID 与 增量PID 通用
+    controller->A_EXPECT_CNT = pid_increment(a_bias, 0, pid_save.a_bias);
+    controller->B_EXPECT_CNT = pid_increment(b_bias, 0, pid_save.b_bias);
+
+    a_bias_speed = pid_speed(a_bias, 0, pid_save.a_speed);
+    b_bias_speed = pid_speed(b_bias, 0, pid_save.b_speed);
+
+    controller->A_PWM = pid_increment(controller->A_CNT, controller->A_EXPECT_CNT + a_bias_speed + 1000, pid_save.a_increment);
+    controller->B_PWM = pid_increment(controller->B_CNT, controller->B_EXPECT_CNT + b_bias_speed + 1000, pid_save.b_increment);
 
     load_pwm(controller->A_PWM, controller->B_PWM);
 }
