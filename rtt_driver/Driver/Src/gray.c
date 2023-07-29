@@ -137,6 +137,8 @@ uint8_t gray_read_reg(uint16_t RegAddress)
  */
 uint8_t get_gray_value()
 {
+    uint8_t bias;
+    bias = gray_read_reg(0xDD);
     return gray_read_reg(0xDD);
 }
 

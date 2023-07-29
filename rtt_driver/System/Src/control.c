@@ -10,16 +10,15 @@ PID_SAVE pid_save = {
     {5, 0.01, 0, 0, 0, 0, 0},
     {5, 0.01, 0, 0, 0, 0, 0},
     // 偏差环
-    {70, 0.1, 3, 0, 0, 0, 0},
-    {70, 0.1, 3, 0, 0, 0, 0},
+    {3, 0.1, 3, 0, 0, 0, 0},
+    {3, 0.1, 3, 0, 0, 0, 0},
     // 增量环
-    {1.7, 0.01, 0, 0, 0, 0, 0},
-    {1.7, 0.01, 0, 0, 0, 0, 0},
+    {0.8, 0.01, 0, 0, 0, 0, 0},
+    {0.8, 0.01, 0, 0, 0, 0, 0},
 };
 
-/*控制器参数初始化*/
+/* 控制器参数初始化 */
 CONTROL_SAVE con_save = {
-
     // 速度控制器
     {0, 0, 0, 0, 0, 0, 0, 0},
     // 位置控制器
@@ -27,22 +26,6 @@ CONTROL_SAVE con_save = {
     // 偏差控制器
     {0, 0, 0, 0, 0, 0, 0, 0},
 };
-
-/*
- * PID速度控制器
- * Excpect_A_CNT: A电机目标速度
- * Excpect_B_CNT: B电机预期速度
- *   *controller：控制器参数结构体指针
- */
-void speed_controller(float Excpect_A_CNT, float Excpect_B_CNT, CONTROL_TYPE *controller)
-{
-    controller->A_CNT = get_timer_cnt(TIM3);
-    controller->B_CNT = get_timer_cnt(TIM2);
-    controller->A_PWM += pid_increment(controller->A_CNT, Excpect_A_CNT, pid_save.a_increment);
-    controller->B_PWM += pid_increment(controller->B_CNT, Excpect_B_CNT, pid_save.b_increment);
-
-    load_pwm(controller->A_PWM, controller->B_PWM);
-}
 
 /*
  * PID位置控制器
@@ -75,8 +58,33 @@ void location_controller(uint16_t distance_cm, CONTROL_TYPE *controller)
     load_pwm(controller->A_PWM, controller->B_PWM);
 }
 
-float a_bias_speed;
-float b_bias_speed;
+float a_cnt;
+float b_cnt;
+/*
+ * PID速度控制器
+ * Excpect_A_CNT: A电机目标速度
+ * Excpect_B_CNT: B电机预期速度
+ *   *controller：控制器参数结构体指针
+ */
+void speed_controller(float Excpect_A_CNT, float Excpect_B_CNT, CONTROL_TYPE *controller)
+{
+    controller->A_CNT = get_timer_cnt(TIM3);
+    controller->B_CNT = get_timer_cnt(TIM2);
+    a_cnt = controller->A_CNT;
+    b_cnt = controller->B_CNT;
+
+    // 反转纠正
+    if (controller->A_CNT > 0x7FFF)
+        controller->A_CNT -= 0x10000;
+    if (controller->B_CNT > 0x7FFF)
+        controller->B_CNT -= 0x10000;
+
+    controller->A_PWM += pid_increment(controller->A_CNT, Excpect_A_CNT, pid_save.a_increment);
+    controller->B_PWM += pid_increment(controller->B_CNT, Excpect_B_CNT, pid_save.b_increment);
+
+    load_pwm(controller->A_PWM, controller->B_PWM);
+}
+
 /*
  * 偏差控制器
  * a_bias：a侧偏差值
@@ -85,24 +93,9 @@ float b_bias_speed;
  */
 void bias_controller(float a_bias, float b_bias, CONTROL_TYPE *controller)
 {
-    // 误差累积
-    controller->A_CNT = get_timer_cnt(TIM3);
-    controller->B_CNT = get_timer_cnt(TIM2);
-    // 反转纠正
-    if (controller->A_CNT > 0x7FFF)
-        controller->A_CNT -= 0x10000;
-    if (controller->B_CNT > 0x7FFF)
-        controller->B_CNT -= 0x10000;
-
     //  偏差PID 与 增量PID 通用
     controller->A_EXPECT_CNT = pid_increment(a_bias, 0, pid_save.a_bias);
     controller->B_EXPECT_CNT = pid_increment(b_bias, 0, pid_save.b_bias);
 
-    a_bias_speed = pid_speed(a_bias, 0, pid_save.a_speed);
-    b_bias_speed = pid_speed(b_bias, 0, pid_save.b_speed);
-
-    controller->A_PWM = pid_increment(controller->A_CNT, controller->A_EXPECT_CNT + a_bias_speed + 1000, pid_save.a_increment);
-    controller->B_PWM = pid_increment(controller->B_CNT, controller->B_EXPECT_CNT + b_bias_speed + 1000, pid_save.b_increment);
-
-    load_pwm(controller->A_PWM, controller->B_PWM);
+    speed_controller(controller->A_EXPECT_CNT + 20, controller->B_EXPECT_CNT + 20, &con_save.speed_control);
 }
