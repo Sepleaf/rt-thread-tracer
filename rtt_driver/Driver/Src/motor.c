@@ -132,11 +132,11 @@ void load_pwm(uint16_t PWMA, uint16_t PWMB)
 {
 	if (PWMA > MAX_PWM)
 		PWMA = MAX_PWM;
-	if (PWMB < MIN_PWM)
-		PWMB = MIN_PWM;
+	if (PWMA < MIN_PWM)
+		PWMA = MIN_PWM;
 
-	if (PWMA > MAX_PWM)
-		PWMA = MAX_PWM;
+	if (PWMB > MAX_PWM)
+		PWMB = MAX_PWM;
 	if (PWMB < MIN_PWM)
 		PWMB = MIN_PWM;
 
