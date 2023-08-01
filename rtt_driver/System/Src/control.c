@@ -7,14 +7,14 @@ PID_SAVE pid_save = {
     {0.1, 0.00001, 2, 0, 0, 0, 0},
     {0.1, 0.00001, 2, 0, 0, 0, 0},
     // 速度环
-    {5, 0.01, 0, 0, 0, 0, 0},
-    {5, 0.01, 0, 0, 0, 0, 0},
+    {9, 0.01, 0, 0, 0, 0, 0},
+    {9, 0.01, 0, 0, 0, 0, 0},
     // 偏差环
-    {3, 0.1, 3, 0, 0, 0, 0},
-    {3, 0.1, 3, 0, 0, 0, 0},
+    {5, 0, 3, 0, 0, 0, 0},
+    {5, 0, 3, 0, 0, 0, 0},
     // 增量环
-    {0.8, 0.01, 0, 0, 0, 0, 0},
-    {0.8, 0.01, 0, 0, 0, 0, 0},
+    {0.9, 0.01, 0, 0, 0, 0, 0},
+    {0.9, 0.01, 0, 0, 0, 0, 0},
 };
 
 /* 控制器参数初始化 */
@@ -58,8 +58,6 @@ void location_controller(uint16_t distance_cm, CONTROL_TYPE *controller)
     load_pwm(controller->A_PWM, controller->B_PWM);
 }
 
-float a_cnt;
-float b_cnt;
 /*
  * PID速度控制器
  * Excpect_A_CNT: A电机目标速度
@@ -70,8 +68,6 @@ void speed_controller(float Excpect_A_CNT, float Excpect_B_CNT, CONTROL_TYPE *co
 {
     controller->A_CNT = get_timer_cnt(TIM3);
     controller->B_CNT = get_timer_cnt(TIM2);
-    a_cnt = controller->A_CNT;
-    b_cnt = controller->B_CNT;
 
     // 反转纠正
     if (controller->A_CNT > 0x7FFF)
@@ -85,6 +81,8 @@ void speed_controller(float Excpect_A_CNT, float Excpect_B_CNT, CONTROL_TYPE *co
     load_pwm(controller->A_PWM, controller->B_PWM);
 }
 
+float a_speed;
+float b_speed;
 /*
  * 偏差控制器
  * a_bias：a侧偏差值
@@ -94,8 +92,10 @@ void speed_controller(float Excpect_A_CNT, float Excpect_B_CNT, CONTROL_TYPE *co
 void bias_controller(float a_bias, float b_bias, CONTROL_TYPE *controller)
 {
     //  偏差PID 与 增量PID 通用
-    controller->A_EXPECT_CNT = pid_increment(a_bias, 0, pid_save.a_bias);
-    controller->B_EXPECT_CNT = pid_increment(b_bias, 0, pid_save.b_bias);
+    controller->A_EXPECT_CNT = pid_speed(a_bias, 0, pid_save.a_bias);
+    controller->B_EXPECT_CNT = pid_speed(b_bias, 0, pid_save.b_bias);
+    a_speed = pid_location(a_bias, 0, pid_save.a_speed);
+    b_speed = pid_location(b_bias, 0, pid_save.b_speed);
 
-    speed_controller(controller->A_EXPECT_CNT + 20, controller->B_EXPECT_CNT + 20, &con_save.speed_control);
+    speed_controller(controller->A_EXPECT_CNT + a_speed + 20, controller->B_EXPECT_CNT + b_speed + 20, &con_save.speed_control);
 }

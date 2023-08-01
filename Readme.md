@@ -109,7 +109,7 @@ int pid_location(int actual_location, int expect_location, PID_TYPE pid)
 
 __gray.c__
 ```
-bias_list[8] = {0, 1, 2, 3, 5, 6, 8, 10};
+bias_list[8] = {0, 1, 2, 4, 6, 8, 10, 14};
 ```
 >结合具体情况适当更改偏差值
 * 偏差控制器
@@ -118,24 +118,31 @@ __control.c__
 ```
 void bias_controller(float a_bias, float b_bias, CONTROL_TYPE *controller)
 {
-    // 误差累积
+    //  偏差PID 与 增量PID 通用
+    controller->A_EXPECT_CNT = pid_speed(a_bias, 0, pid_save.a_bias);
+    controller->B_EXPECT_CNT = pid_speed(b_bias, 0, pid_save.b_bias);
+    a_speed = pid_location(a_bias, 0, pid_save.a_speed);
+    b_speed = pid_location(b_bias, 0, pid_save.b_speed);
+
+    //  这里的20是基础速度
+    speed_controller(controller->A_EXPECT_CNT + a_speed + 20, controller->B_EXPECT_CNT + b_speed + 20, &con_save.speed_control);
+}
+```
+* 速度控制器
+```
+  void speed_controller(float Excpect_A_CNT, float Excpect_B_CNT, CONTROL_TYPE *controller)
+{
     controller->A_CNT = get_timer_cnt(TIM3);
     controller->B_CNT = get_timer_cnt(TIM2);
+
     // 反转纠正
     if (controller->A_CNT > 0x7FFF)
         controller->A_CNT -= 0x10000;
     if (controller->B_CNT > 0x7FFF)
         controller->B_CNT -= 0x10000;
 
-    //  偏差PID 与 增量PID 通用
-    controller->A_EXPECT_CNT = pid_increment(a_bias, 0, pid_save.a_bias);
-    controller->B_EXPECT_CNT = pid_increment(b_bias, 0, pid_save.b_bias);
-
-    a_bias_speed = pid_speed(a_bias, 0, pid_save.a_speed);
-    b_bias_speed = pid_speed(b_bias, 0, pid_save.b_speed);
-
-    controller->A_PWM = pid_increment(controller->A_CNT, controller->A_EXPECT_CNT + a_bias_speed + 1000, pid_save.a_increment);
-    controller->B_PWM = pid_increment(controller->B_CNT, controller->B_EXPECT_CNT + b_bias_speed + 1000, pid_save.b_increment);
+    controller->A_PWM += pid_increment(controller->A_CNT, Excpect_A_CNT, pid_save.a_increment);
+    controller->B_PWM += pid_increment(controller->B_CNT, Excpect_B_CNT, pid_save.b_increment);
 
     load_pwm(controller->A_PWM, controller->B_PWM);
 }
@@ -144,6 +151,7 @@ void bias_controller(float a_bias, float b_bias, CONTROL_TYPE *controller)
   
 __my_rtt.c__
 ```
+循迹线程
 static void trace_thread_entry(void *parameter)
 {
     while (1)
@@ -162,6 +170,20 @@ static void trace_thread_entry(void *parameter)
     }
 }
     
+```
+```
+控制环线程
+static void controller_thread_entry(void *parameter)
+{
+    motor_forward();
+
+    while (1)
+    {
+        bias_controller(a_bias, b_bias, &con_save.bias_control);
+
+        rt_thread_delay(10);
+    }
+}
 ```
 
 

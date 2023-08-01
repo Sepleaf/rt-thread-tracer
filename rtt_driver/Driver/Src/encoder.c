@@ -42,7 +42,7 @@ void encoder_a_init()
     TIM_ICInitStructure.TIM_ICFilter                    = 0xF;
     TIM_ICInit(encoder_A_TIMx, &TIM_ICInitStructure);
 
-    TIM_EncoderInterfaceConfig(encoder_A_TIMx, TIM_EncoderMode_TI12, TIM_ICPolarity_Rising, TIM_ICPolarity_Falling);
+    TIM_EncoderInterfaceConfig(encoder_A_TIMx, TIM_EncoderMode_TI12, TIM_ICPolarity_Falling, TIM_ICPolarity_Falling);
 
     TIM_SetCounter(encoder_A_TIMx, 0);
     TIM_Cmd(encoder_A_TIMx, ENABLE);
@@ -74,7 +74,7 @@ void encoder_b_init()
     TIM_ICInitStructure.TIM_ICFilter                    = 0xF;
     TIM_ICInit(encoder_B_TIMx, &TIM_ICInitStructure);
 
-    TIM_EncoderInterfaceConfig(encoder_B_TIMx, TIM_EncoderMode_TI12, TIM_ICPolarity_Rising, TIM_ICPolarity_Falling);
+    TIM_EncoderInterfaceConfig(encoder_B_TIMx, TIM_EncoderMode_TI12, TIM_ICPolarity_Rising, TIM_ICPolarity_Rising);
 
     TIM_SetCounter(encoder_B_TIMx, 0);
     TIM_Cmd(encoder_B_TIMx, ENABLE);

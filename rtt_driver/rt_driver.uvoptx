@@ -151,7 +151,12 @@
         <Ww>
           <count>0</count>
           <WinNumber>1</WinNumber>
-          <ItemText>a_value,0x0A</ItemText>
+          <ItemText>a_cnt,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>1</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>b_cnt</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>

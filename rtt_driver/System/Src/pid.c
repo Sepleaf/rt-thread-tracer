@@ -22,8 +22,9 @@ float pid_location(float actual_location, float expect_location, PID_TYPE pid)
                  pid.kd * (pid.bias - pid.last_bias);
 
     pid.last_bias = pid.bias;
-    if (pid.output > 5000)
-        pid.output = 5000;
+    // 输出限幅
+    if (pid.output > 6000)
+        pid.output = 6000;
     if (pid.output < 0)
         pid.output = 0;
 
@@ -53,9 +54,9 @@ float pid_speed(float actual_speed, float expect_speed, PID_TYPE pid)
 
     pid.output = pid.kp * pid.bias +
                  pid.ki * pid.integral_bias;
-
-    if (pid.output > 5000)
-        pid.output = 5000;
+    // 输出限幅
+    if (pid.output > 6000)
+        pid.output = 6000;
     if (pid.output < 0)
         pid.output = 0;
 
